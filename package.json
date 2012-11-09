@@ -1,0 +1,41 @@
+{
+  "name": "grunt-bower",
+  "description": "Copy bower installed components to dist folder.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/curist/grunt-bower",
+  "author": {
+    "name": "curist",
+    "email": "curist.cyc@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/curist/grunt-bower.git"
+  },
+  "bugs": {
+    "url": "https://github.com/curist/grunt-bower/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/curist/grunt-bower/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": "bin/grunt-bower",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "bower": "~0.3.2",
+    "q": "~0.8.10"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
