@@ -15,7 +15,15 @@ grunt.loadNpmTasks('grunt-bower');
 [getting_started]: https://github.com/gruntjs/grunt/blob/master/docs/getting_started.md
 
 ## Documentation
-_(Coming soon)_
+To your [grunt.js gruntfile][getting_started], add:
+
+```javascript
+bower: {
+  dev: {
+    dest: 'dest/path'
+  }
+}
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
