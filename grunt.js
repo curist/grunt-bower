@@ -36,14 +36,17 @@ module.exports = function(grunt) {
         src: 'foo/',
         dest: 'public/js/lib',
         options: {
-          foo: true
+          basePath: '/'
         }
       }
-    }
+    },
+    clean: ['public/']
   });
 
   // Load local tasks.
   grunt.loadTasks('tasks');
+
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task.
   grunt.registerTask('default', 'lint test bower');

@@ -14,23 +14,34 @@ module.exports = function(grunt) {
   // ==========================================================================
   // TASKS
   // ==========================================================================
+  var task_name = 'bower'
+    , task_desc = 'Copy bower installed components to dist folder.'
+    , _ = grunt.utils._
+    , path = require('path')
+    , bower = require('bower')
+    , log = grunt.log.write;
 
-  grunt.registerMultiTask('bower', 'Copy bower installed components to dist folder.', function() {
-    var bower = require('bower')
-      , path = require('path')
-      , log  = grunt.log.write
-      , done = this.async()
-      , dest = this.file.dest || 'public/scripts/vendor/';
-
-    // Make the dest dir if it doesn't exist
-    grunt.file.mkdir(dest);
+  grunt.registerMultiTask(task_name, task_desc, function() {
+    var done = this.async()
+      , dest = this.file.dest || 'public/scripts/vendor/'
+      , base_path = this.data.options.basePath;
 
     bower.commands.list({"paths":true})
       .on('data',  function (data) {
-        grunt.util._(data).each(function(src_path, lib_name) {
-          var dest_file = path.join(dest, (lib_name + '.js'));
+        _(data).each(function(src_path, lib_name) {
+          var preserved_path
+            , dest_file_path;
+
+          if(base_path !== undefined) {
+            preserved_path = strippedBasePath(base_path, src_path);
+          } else {
+            preserved_path = '';
+          }
+
+          dest_file_path = path.join(dest, preserved_path, (lib_name + '.js'));
+
           try {
-            grunt.file.copy(src_path, dest_file);
+            grunt.file.copy(src_path, dest_file_path);
             log(src_path.cyan + ' copied.\n');
           } catch (err) {
             grunt.fail.warn(err);
@@ -42,4 +53,19 @@ module.exports = function(grunt) {
         grunt.fail.warn(err);
       });
   });
+
+  function strippedBasePath(base_path, src_path) {
+    var base_path_arr = _(base_path.split(path.sep)).compact()
+      , src_path_arr = _(src_path.split(path.sep)).compact()
+      , i = 0;
+
+    // we want path only, no filename
+    src_path_arr.pop();
+
+    while(base_path_arr[i] === src_path_arr[i]) {
+      i++;
+    }
+
+    return src_path_arr.slice(i).join(path.sep);
+  }
 };
