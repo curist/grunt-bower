@@ -19,7 +19,8 @@ module.exports = function(grunt) {
     , _ = grunt.utils._
     , path = require('path')
     , bower = require('bower')
-    , log = grunt.log.write;
+    , log = grunt.log.write
+    , helpers = require('./lib/helpers').init(grunt);
 
   grunt.registerMultiTask(task_name, task_desc, function() {
     var done = this.async()
@@ -33,7 +34,7 @@ module.exports = function(grunt) {
             , dest_file_path;
 
           if(base_path !== undefined) {
-            preserved_path = strippedBasePath(base_path, src_path);
+            preserved_path = helpers.strippedBasePath(base_path, src_path);
           } else {
             preserved_path = '';
           }
@@ -53,19 +54,4 @@ module.exports = function(grunt) {
         grunt.fail.warn(err);
       });
   });
-
-  function strippedBasePath(base_path, src_path) {
-    var base_path_arr = _(base_path.split(path.sep)).compact()
-      , src_path_arr = _(src_path.split(path.sep)).compact()
-      , i = 0;
-
-    // we want path only, no filename
-    src_path_arr.pop();
-
-    while(base_path_arr[i] === src_path_arr[i]) {
-      i++;
-    }
-
-    return src_path_arr.slice(i).join(path.sep);
-  }
 };
