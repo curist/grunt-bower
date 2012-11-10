@@ -26,9 +26,40 @@ exports['bower'] = {
     done();
   },
   'helper': function(test) {
-    test.expect(0);
+    var helpers = require('../tasks/lib/helpers').init(grunt)
+      , path = require('path');
+
     // tests here
-    // test.equal(grunt.helper('bower'), 'bower!!!', 'should return the correct value.');
+    // tests for strippedBasePath
+    (function(){
+      var base_path
+        , src_path;
+
+      base_path = '';
+      src_path = path.join('abc', 'def', 'ok.js');
+      test.equal(
+        helpers.strippedBasePath(base_path, src_path),
+        path.join('abc', 'def'),
+        'should return the correct value.'
+      );
+
+      base_path = path.sep;
+      src_path = path.join('abc', 'def', 'ok.js');
+      test.equal(
+        helpers.strippedBasePath(base_path, src_path),
+        path.join('abc', 'def'),
+        'should return the correct value.'
+      );
+
+      base_path = 'abc';
+      src_path = path.join('abc', 'def', 'ok.js');
+      test.equal(
+        helpers.strippedBasePath(base_path, src_path),
+        'def',
+        'should return the correct value.'
+      );
+    })();
+
     test.done();
   }
 };
