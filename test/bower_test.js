@@ -26,9 +26,9 @@ exports['bower'] = {
     done();
   },
   'helper': function(test) {
-    test.expect(1);
+    test.expect(0);
     // tests here
-    test.equal(grunt.helper('bower'), 'bower!!!', 'should return the correct value.');
+    // test.equal(grunt.helper('bower'), 'bower!!!', 'should return the correct value.');
     test.done();
   }
 };

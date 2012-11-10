@@ -15,16 +15,31 @@ module.exports = function(grunt) {
   // TASKS
   // ==========================================================================
 
-  grunt.registerTask('bower', 'Your task description goes here.', function() {
-    grunt.log.write(grunt.helper('bower'));
+  grunt.registerMultiTask('bower', 'Copy bower installed components to dist folder.', function() {
+    var bower = require('bower')
+      , path = require('path')
+      , log  = grunt.log.write
+      , done = this.async()
+      , dest = this.file.dest || 'public/scripts/vendor/';
+
+    // Make the dest dir if it doesn't exist
+    grunt.file.mkdir(dest);
+
+    bower.commands.list({"paths":true})
+      .on('data',  function (data) {
+        grunt.util._(data).each(function(src_path, lib_name) {
+          var dest_file = path.join(dest, (lib_name + '.js'));
+          try {
+            grunt.file.copy(src_path, dest_file);
+            log(src_path.cyan + ' copied.\n');
+          } catch (err) {
+            grunt.fail.warn(err);
+          }
+        });
+        done();
+      })
+      .on('error', function (err) {
+        grunt.fail.warn(err);
+      });
   });
-
-  // ==========================================================================
-  // HELPERS
-  // ==========================================================================
-
-  grunt.registerHelper('bower', function() {
-    return 'bower!!!';
-  });
-
 };

@@ -26,9 +26,19 @@ module.exports = function(grunt) {
         eqnull: true,
         node: true,
         es5: true,
-        strict: false
+        strict: false,
+        laxcomma: true
       },
       globals: {}
+    },
+    bower: {
+      dev: {
+        src: 'foo/',
+        dest: 'public/js/lib',
+        options: {
+          foo: true
+        }
+      }
     }
   });
 
@@ -36,6 +46,6 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', 'lint test');
+  grunt.registerTask('default', 'lint test bower');
 
 };
