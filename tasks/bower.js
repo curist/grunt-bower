@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask(task_name, task_desc, function() {
     var done = this.async()
-      , dest = this.file.dest || 'public/scripts/vendor/'
+      , dest = this.file.dest || path.join('public', 'scripts' ,'vendor')
       , options = this.data.options || {}
       , base_path = options.basePath;
 
