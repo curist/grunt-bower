@@ -2,6 +2,12 @@
 
 Copy bower installed components to dist folder.
 
+## First Thing First
+This plugin doesn't set Bower as dependency to reduce the redundancy, but you should have Bower installed globally.
+```sh
+npm install -g bower
+```
+
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-bower`
 
@@ -41,9 +47,7 @@ bower: {
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
-## Release History
-_(Nothing yet)_
 
 ## License
-Copyright (c) 2012 curist  
+Copyright (c) 2012 curist
 Licensed under the MIT license.
