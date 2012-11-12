@@ -25,7 +25,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask(task_name, task_desc, function() {
     var done = this.async()
       , dest = this.file.dest || 'public/scripts/vendor/'
-      , base_path = this.data.options.basePath;
+      , options = this.data.options || {}
+      , base_path = options.basePath;
 
     bower.commands.list({"paths":true})
       .on('data',  function (data) {
