@@ -4,8 +4,8 @@ exports.init = function(grunt) {
     , _ = grunt.utils._;
 
   exports.strippedBasePath = function(base_path, src_path) {
-    var base_path_arr = _(base_path.split(path.sep)).compact()
-      , src_path_arr = _(src_path.split(path.sep)).compact()
+    var base_path_arr = _(path.normalize(base_path).split(path.sep)).compact()
+      , src_path_arr = _(path.normalize(src_path).split(path.sep)).compact()
       , i = 0;
 
     // we want path only, no filename

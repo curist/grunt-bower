@@ -58,6 +58,15 @@ exports['bower'] = {
         'def',
         'should return the correct value.'
       );
+
+      base_path = 'abc';
+      src_path = 'abc/ghi/../def/ok.js';
+      src_path = src_path.replace(/\//g, path.sep);
+      test.equal(
+        helpers.strippedBasePath(base_path, src_path),
+        'def',
+        'should return the correct value.'
+      );
     })();
 
     test.done();
