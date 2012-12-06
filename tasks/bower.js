@@ -34,6 +34,12 @@ module.exports = function(grunt) {
           var preserved_path
             , dest_file_path;
 
+          if (src_path.substr(src_path.length - 3) !== '.js') {
+            src_path = src_path.split('/');
+            src_path.push(src_path[src_path.length - 1] + '.js');
+            src_path = src_path.join('/');
+          }
+
           if(base_path !== undefined) {
             preserved_path = helpers.strippedBasePath(base_path, src_path);
           } else {
