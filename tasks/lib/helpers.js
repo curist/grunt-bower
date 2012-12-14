@@ -60,7 +60,7 @@ exports.init = function(grunt) {
     all_js_files.forEach(function(file_path, i) {
       var file_name = file_path.split(path.sep).pop();
       var dist = levenshteinDistanceAux(lib_name, file_name);
-      if(dist < min_dist) {
+      if(dist <= min_dist) {
         min_dist = dist;
         min_dist_index = i;
       }
