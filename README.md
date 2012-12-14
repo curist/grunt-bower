@@ -44,6 +44,11 @@ bower: {
 }
 ```
 
+## Change Logs
+- Dec 14, 2012 v0.4.1
+
+  try to guess the library file name if not provided by the installed component
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
