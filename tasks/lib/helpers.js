@@ -40,13 +40,59 @@ exports.init = function(grunt) {
         }
         main = path.join(lib_root, main);
         if(existsSync(main)) {
+          // all good, returning
           return main;
         }
       }
     }
 
-    return lib_filename;
+    // 2.
+    // computing Levenshtein distance to guess a lib file path
+    var min_dist = 1e13;
+    var min_dist_index = 0;
+
+    var all_js_files = grunt.file.expandFiles(path.join(lib_root, '**', '*.js'))
+      .sort(function(a, b) {
+        // reverse order by path length
+        return b.length - a.length;
+      });
+
+    all_js_files.forEach(function(file_path, i) {
+      var file_name = file_path.split(path.sep).pop();
+      var dist = levenshteinDistanceAux(lib_name, file_name);
+      if(dist < min_dist) {
+        min_dist = dist;
+        min_dist_index = i;
+      }
+    });
+
+    return all_js_files[min_dist_index];
   };
 
   return exports;
 };
+
+// http://en.wikipedia.org/wiki/Levenshtein_distance#Computing_Levenshtein_distance
+function levenshteinDistanceAux(str1, str2) {
+  var memo = {};
+
+  function levenshteinDistance(str1, i, len1, str2, j, len2) {
+     var key = [i,len1,j,len2].join(',');
+     if(memo[key] !== undefined) return memo[key];
+
+     if(len1 === 0) return len2;
+     if(len2 === 0) return len1;
+     var cost = 0;
+     if(str1[i] !== str2[j]) cost = 1;
+
+     var dist = Math.min(
+         levenshteinDistance(str1, i+1,len1-1, str2,j,len2)+1,
+         levenshteinDistance(str1,i,len1,str2,j+1,len2-1)+1,
+         levenshteinDistance(str1,i+1,len1-1,str2,j+1,len2-1)+cost
+     );
+     memo[key] = dist;
+     return dist;
+  }
+
+  return levenshteinDistance(str1, 0, str1.length, str2, 0, str2.length);
+}
