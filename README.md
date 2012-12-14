@@ -44,6 +44,9 @@ bower: {
 }
 ```
 
+## Notes
+grunt-bower currently need Bower version > 0.4 to work correctly, after `npm install -g bower` upgraded Bower, you might also want to `bower update` in your project directory to regenereate Bower created component.json.
+
 ## Change Logs
 - Dec 14, 2012 v0.4.1
 
