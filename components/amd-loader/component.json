@@ -1,0 +1,9 @@
+{
+  "name": "amd-loader",
+  "version": "0.0.0",
+  "commit": "1fa6fdc9294b780b63a1babef36b41d22ba64507",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajaxorg/node-amd-loader.git"
+  }
+}
