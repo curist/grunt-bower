@@ -14,25 +14,27 @@ module.exports = function(grunt) {
   // ==========================================================================
   // TASKS
   // ==========================================================================
-  var task_name = 'bower'
-    , task_desc = 'Copy bower installed components to dist folder.'
-    , _ = grunt.utils._
-    , path = require('path')
-    , bower = require('bower')
-    , log = grunt.log.write
-    , helpers = require('./lib/helpers').init(grunt);
+  var task_name = 'bower';
+  var task_desc = 'Copy bower installed components to dist folder.';
+  var _ = grunt.utils._;
+  var path = require('path');
+  var bower = require('bower');
+  var log = grunt.log.write;
+  var helpers = require('./lib/helpers').init(grunt);
 
   grunt.registerMultiTask(task_name, task_desc, function() {
-    var done = this.async()
-      , dest = this.file.dest || path.join('public', 'scripts' ,'vendor')
-      , options = this.data.options || {}
-      , base_path = options.basePath;
+    var done = this.async();
+    var dest = this.file.dest || path.join('public', 'scripts' ,'vendor');
+    var options = this.data.options || {};
+    var base_path = options.basePath;
 
-    bower.commands.list({"paths":true})
+    bower.commands.list({"map":true})
       .on('data',  function (data) {
-        _(data).each(function(src_path, lib_name) {
-          var preserved_path
-            , dest_file_path;
+        _(data).each(function(meta_info, lib_name) {
+          var preserved_path;
+          var dest_file_path;
+          var src_path = meta_info.source.main ||
+            helpers.guessLibFilename(bower.config.directory, lib_name);
 
           if(base_path !== undefined) {
             preserved_path = helpers.strippedBasePath(base_path, src_path);
