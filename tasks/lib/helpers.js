@@ -19,12 +19,27 @@ exports.init = function(grunt) {
     return src_path_arr.slice(i).join(path.sep);
   };
 
-  exports.guessLibFilename = function(components_path, lib_name) {
+  exports.getLibFilename = function(main_path, components_path, lib_name) {
     // In Nodejs 0.8.0, existsSync moved from path -> fs.
     var existsSync = fs.existsSync || path.existsSync;
 
     var lib_root = path.join(components_path, lib_name);
     var lib_filename = path.join(lib_root, lib_name + '.js');
+
+    // 0.
+    // check if main attr in components.json have file exists
+    if(main_path) {
+      if(typeof main_path === 'string') {
+        if(!_(main_path).endsWith('.js')) {
+          main_path += '.js';
+        }
+        if(existsSync(main_path)) {
+          return main_path;
+        }
+      } else {
+        // array, falling through
+      }
+    }
 
     // 1.
     // check if package.json exists, and contains attribute "main"
@@ -35,13 +50,17 @@ exports.init = function(grunt) {
       main = grunt.file.readJSON(package_json_path).main;
 
       if(main) {
-        if(!_(main).endsWith('.js')) {
-          main += '.js';
-        }
-        main = path.join(lib_root, main);
-        if(existsSync(main)) {
-          // all good, returning
-          return main;
+        if(typeof main === 'string') {
+          if(!_(main).endsWith('.js')) {
+            main += '.js';
+          }
+          main = path.join(lib_root, main);
+          if(existsSync(main)) {
+            // all good, returning
+            return main;
+          }
+        } else {
+          // array, falling through
         }
       }
     }

@@ -33,8 +33,11 @@ module.exports = function(grunt) {
         _(data).each(function(meta_info, lib_name) {
           var preserved_path;
           var dest_file_path;
-          var src_path = meta_info.source.main ||
-            helpers.guessLibFilename(bower.config.directory, lib_name);
+          var src_path = helpers.getLibFilename(
+            meta_info.source.main,
+            bower.config.directory,
+            lib_name
+          );
 
           if(base_path !== undefined) {
             preserved_path = helpers.strippedBasePath(base_path, src_path);
