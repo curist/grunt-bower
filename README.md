@@ -45,6 +45,10 @@ bower: {
 ```
 
 ## Change Logs
+- Jan 31, 2013 v0.4.3
+
+  Don't throw user out with error, and provides a little more informative warning messages.
+
 - Jan 11, 2013 v0.4.2a
 
   Grunt v0.4.0+ support

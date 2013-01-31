@@ -31,6 +31,7 @@ module.exports = function(grunt) {
     var options = this.data.options || {};
     var base_path = options.basePath;
 
+
     bower.commands.list({"map":true})
       .on('data',  function (data) {
         _(data).each(function(meta_info, lib_name) {
@@ -54,7 +55,7 @@ module.exports = function(grunt) {
             grunt.file.copy(src_path, dest_file_path);
             log(src_path.cyan + ' copied.\n');
           } catch (err) {
-            grunt.fail.warn(err);
+            log(('Fail to copy lib file for ' + lib_name + '!\n').red);
           }
         });
         done();
