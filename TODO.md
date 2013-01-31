@@ -1,2 +1,2 @@
-* handle custom components folder path
-* integrate with requirejs
+* handle other file extensions
+* better output lib file name
