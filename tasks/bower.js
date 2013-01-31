@@ -14,15 +14,18 @@ module.exports = function(grunt) {
   // ==========================================================================
   // TASKS
   // ==========================================================================
+
   var task_name = 'bower';
   var task_desc = 'Copy bower installed components to dist folder.';
-  var _ = grunt.utils._;
+  var _ = grunt.utils ? grunt.utils._ : grunt.util._;
   var path = require('path');
   var bower = require('bower');
   var log = grunt.log.write;
   var helpers = require('./lib/helpers').init(grunt);
 
   grunt.registerMultiTask(task_name, task_desc, function() {
+    this.file = this.file || this.files;
+
     var done = this.async();
     var dest = this.file.dest || path.join('public', 'scripts' ,'vendor');
     var options = this.data.options || {};

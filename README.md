@@ -45,6 +45,10 @@ bower: {
 ```
 
 ## Change Logs
+- Jan 11, 2013 v0.4.2a
+
+  Grunt v0.4.0+ support
+
 - Dec 15, 2012 v0.4.2
 
   better handling the way to get file path to be copied, Bower v0.4.0 and above are supported
