@@ -18,7 +18,7 @@ grunt.loadNpmTasks('grunt-bower');
 ```
 
 [grunt]: http://gruntjs.com/
-[getting_started]: https://github.com/gruntjs/grunt/blob/master/docs/getting_started.md
+[getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 
 ## Documentation
 To your [grunt.js gruntfile][getting_started], add:
