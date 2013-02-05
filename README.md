@@ -44,7 +44,25 @@ bower: {
 }
 ```
 
+add **stripJsAffix** option if you'd like to have lib names with 'js' affix to be stripped:
+
+```javascript
+bower: {
+  dev: {
+    dest: 'dest/path',
+    options: {
+      stripJsAffix: true
+    }
+  }
+}
+```
+**stripJsAffix** could cause name confliction, use with caution!
+
 ## Change Logs
+- Feb 05, 2013 v0.5.0
+
+  add option `stripJsAffix` to strip `/\W?js$/` in outputed file name.
+
 - Feb 05, 2013 v0.4.4
 
   Grunt v0.4.0+ support, for real.

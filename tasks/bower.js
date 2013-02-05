@@ -28,6 +28,7 @@ module.exports = function(grunt) {
     var targets = (this.file) ? [this.file] : this.files;
     var options = this.data.options || {};
     var base_path = options.basePath;
+    var stripJsAffix = options.stripJsAffix;
 
 
     bower.commands.list({"map":true})
@@ -50,7 +51,16 @@ module.exports = function(grunt) {
           try {
             targets.forEach(function(target) {
               var dest = target.dest || path.join('public', 'scripts' ,'vendor');
-              dest_file_path = path.join(dest, preserved_path, (lib_name + '.js'));
+              var dest_file_name;
+
+              // check if we want to strip 'js' affix in lib_name
+              if(stripJsAffix) {
+                dest_file_name = lib_name.replace(/\W?js$/, '') + '.js';
+              } else {
+                dest_file_name = lib_name + '.js';
+              }
+
+              dest_file_path = path.join(dest, preserved_path, dest_file_name);
               grunt.file.copy(src_path, dest_file_path);
             });
             log(src_path.cyan + ' copied.\n');
