@@ -24,10 +24,8 @@ module.exports = function(grunt) {
   var helpers = require('./lib/helpers').init(grunt);
 
   grunt.registerMultiTask(task_name, task_desc, function() {
-    this.file = this.file || this.files;
-
     var done = this.async();
-    var dest = this.file.dest || path.join('public', 'scripts' ,'vendor');
+    var targets = (this.file) ? [this.file] : this.files;
     var options = this.data.options || {};
     var base_path = options.basePath;
 
@@ -49,10 +47,12 @@ module.exports = function(grunt) {
             preserved_path = '';
           }
 
-          dest_file_path = path.join(dest, preserved_path, (lib_name + '.js'));
-
           try {
-            grunt.file.copy(src_path, dest_file_path);
+            targets.forEach(function(target) {
+              var dest = target.dest || path.join('public', 'scripts' ,'vendor');
+              dest_file_path = path.join(dest, preserved_path, (lib_name + '.js'));
+              grunt.file.copy(src_path, dest_file_path);
+            });
             log(src_path.cyan + ' copied.\n');
           } catch (err) {
             log(('Fail to copy lib file for ' + lib_name + '!\n').red);
