@@ -53,6 +53,10 @@ bower: {
 **stripJsAffix** could cause name confliction, use with caution!
 
 ## Change Logs
+- Jul 28, 2013 v0.6.1
+
+  support bower v1.0.0
+
 - Feb 05, 2013 v0.5.0
 
   add option `stripJsAffix` to strip `/\W?js$/` in outputed file name.

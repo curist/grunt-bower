@@ -31,13 +31,13 @@ module.exports = function(grunt) {
     var stripJsAffix = options.stripJsAffix;
 
 
-    bower.commands.list({"map":true})
-      .on('data',  function (data) {
-        _(data).each(function(meta_info, lib_name) {
+    bower.commands.list({paths: true})
+      .on('end',  function (data) {
+        _(data).each(function(lib_path, lib_name) {
           var preserved_path;
           var dest_file_path;
           var src_path = helpers.getLibFilename(
-            meta_info.source.main,
+            lib_path,
             bower.config.directory,
             lib_name
           );
