@@ -33,40 +33,47 @@ module.exports = function(grunt) {
 
     bower.commands.list({paths: true})
       .on('end',  function (data) {
-        _(data).each(function(lib_path, lib_name) {
-          var preserved_path;
-          var dest_file_path;
-          var src_path = helpers.getLibFilename(
-            lib_path,
-            bower.config.directory,
-            lib_name
-          );
+        _(data).each(function(lib_paths, lib_name) {
 
-          if(base_path !== undefined) {
-            preserved_path = helpers.strippedBasePath(base_path, src_path);
-          } else {
-            preserved_path = '';
-          }
+          lib_paths = lib_paths.split(",");
 
-          try {
-            targets.forEach(function(target) {
-              var dest = target.dest || path.join('public', 'scripts' ,'vendor');
-              var dest_file_name;
+          _(lib_paths).each(function(lib_path){
+            var preserved_path;
+            var dest_file_path;
+            var src_path = helpers.getLibFilename(
+              lib_path,
+              bower.config.directory,
+              lib_name
+            );
 
-              // check if we want to strip 'js' affix in lib_name
-              if(stripJsAffix) {
-                dest_file_name = lib_name.replace(/\W?js$/, '') + '.js';
-              } else {
-                dest_file_name = lib_name + '.js';
-              }
+            var file_ext = src_path.split(".").pop();
 
-              dest_file_path = path.join(dest, preserved_path, dest_file_name);
-              grunt.file.copy(src_path, dest_file_path);
-            });
-            log(src_path.cyan + ' copied.\n');
-          } catch (err) {
-            log(('Fail to copy lib file for ' + lib_name + '!\n').red);
-          }
+            if(base_path !== undefined) {
+              preserved_path = helpers.strippedBasePath(base_path, src_path);
+            } else {
+              preserved_path = '';
+            }
+
+            try {
+              targets.forEach(function(target) {
+                var dest = target.dest || path.join('public', 'scripts' ,'vendor');
+                var dest_file_name;
+
+                // check if we want to strip 'js' affix in lib_name
+                if(stripJsAffix) {
+                  dest_file_name = lib_name.replace(/\W?js$/, '') + '.' + file_ext;
+                } else {
+                  dest_file_name = lib_name + '.' + file_ext;
+                }
+
+                dest_file_path = path.join(dest, preserved_path, dest_file_name);
+                grunt.file.copy(src_path, dest_file_path);
+              });
+              log(src_path.cyan + ' copied to.\n');
+            } catch (err) {
+              log(('Fail to copy lib file for ' + lib_name + '!\n').red);
+            }
+          });
         });
         done();
       })
