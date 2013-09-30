@@ -56,7 +56,7 @@ bower: {
 - Sep 30, 2013 v0.7.0
 
   Added css and multiple file support  
-  Thank you, [[Juri Saltbacka][https://github.com/3bola]]!!
+  Thank you, [Juri Saltbacka](https://github.com/3bola)!!
 
 - Jul 28, 2013 v0.6.1
 
