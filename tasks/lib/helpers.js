@@ -57,13 +57,13 @@ exports.init = function(grunt) {
     var existsSync = fs.existsSync || path.existsSync;
 
     var lib_root = path.join(components_path, lib_name);
-    var lib_filename = path.join(lib_root, lib_name + '.js'); // Why?
+    var lib_filename = path.join(lib_root, lib_name + '.js');
 
     // 0.
     // check if main attr in components.json have file exists
     if(main_path) {
       if(typeof main_path === 'string') {
-        if(!_(main_path).endsWith('.js') && !_(main_path).endsWith('.css')) {
+        if(!_(main_path).endsWith('.js')) {
           main_path += '.js';
         }
         if(existsSync(main_path)) {
