@@ -25,19 +25,6 @@ bower: {
 }
 ```
 
-add **basePath** option if you want to preserve library path:
-
-```javascript
-bower: {
-  dev: {
-    dest: 'dest/path',
-    options: {
-      basePath: 'components/'
-    }
-  }
-}
-```
-
 add **stripJsAffix** option if you'd like to have lib names with 'js' affix to be stripped:
 
 ```javascript
@@ -50,9 +37,68 @@ bower: {
   }
 }
 ```
+
 **stripJsAffix** could cause name confliction, use with caution!
 
+if you want to assign different destination folder for other file types:
+
+```javascript
+bower: {
+  dev: {
+    dest: 'dest/',
+    js_dest: 'dest/js',
+    css_dest: 'dest/styles'
+  }
+}
+```
+
+file types without a `[file_type]_dest` will go to `dest` folder.
+
+if you want to have more specific `dest` options for certain pacakges:
+
+```javascript
+bower: {
+  dev: {
+    dest: 'public/',
+    css_dest: 'public/styles',
+    options: {
+      packageSpecific: {
+        bootstrap: {
+          dest: 'public/fonts',
+          css_dest: 'public/css/bootstrap'
+        }
+      }
+    }
+  }
+}
+```
+
+finally, if `grunt-bower` not copying the files you want:
+
+```javascript
+bower: {
+  dev: {
+    dest: 'public/',
+    options: {
+      packageSpecific: {
+        'typeahead.js': {
+          files: [
+            "dist/typeahead.bundle.js"
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+
 ## Change Logs
+- Feb 09, 2014 v0.8.0
+
+  Reintroduced the ability to handle multiple file support  
+  Removed `basePath` option
+
 - Sep 30, 2013 v0.7.0
 
   Added css and multiple file support  

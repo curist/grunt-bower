@@ -37,22 +37,7 @@ exports.init = function(grunt) {
   var path = require('path');
   var _ = grunt.utils ? grunt.utils._ : grunt.util._;
 
-  exports.strippedBasePath = function(base_path, src_path) {
-    var base_path_arr = _(path.normalize(base_path).split(path.sep)).compact();
-    var src_path_arr = _(path.normalize(src_path).split(path.sep)).compact();
-    var i = 0;
-
-    // we want path only, no filename
-    src_path_arr.pop();
-
-    while(base_path_arr[i] === src_path_arr[i]) {
-      i++;
-    }
-
-    return src_path_arr.slice(i).join(path.sep);
-  };
-
-  exports.getLibFilename = function(main_path, components_path, lib_name) {
+  exports.getLibFilenames = function(main_path, components_path, lib_name) {
     // In Nodejs 0.8.0, existsSync moved from path -> fs.
     var existsSync = fs.existsSync || path.existsSync;
 
@@ -67,10 +52,11 @@ exports.init = function(grunt) {
           main_path += '.js';
         }
         if(existsSync(main_path)) {
-          return main_path;
+          return [main_path];
         }
       } else {
         // array, falling through
+        return main_path;
       }
     }
 
@@ -90,7 +76,7 @@ exports.init = function(grunt) {
           main = path.join(lib_root, main);
           if(existsSync(main)) {
             // all good, returning
-            return main;
+            return [main];
           }
         } else {
           // array, falling through
@@ -118,7 +104,7 @@ exports.init = function(grunt) {
       }
     });
 
-    return all_js_files[min_dist_index];
+    return [all_js_files[min_dist_index]];
   };
 
   return exports;
