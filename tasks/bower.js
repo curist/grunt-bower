@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                 return [ext_name, target[dest_opt]];
               }).object().value();
 
-              var pacakge_dest = '';
+              var package_dest = '';
               var package_dests = {};
               var package_opt = options.packageSpecific &&
                 options.packageSpecific[lib_name];
