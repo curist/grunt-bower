@@ -3,7 +3,7 @@
 Copy bower installed components to dist folder.
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-bower`
+Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with: `npm install grunt-bower`
 
 Then add this line to your project's `grunt.js` gruntfile:
 
@@ -12,10 +12,10 @@ grunt.loadNpmTasks('grunt-bower');
 ```
 
 [grunt]: http://gruntjs.com/
-[getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
+[getting_started]: http://gruntjs.com/getting-started
 
 ## Documentation
-To your [grunt.js gruntfile][getting_started], add:
+To your [Gruntfile.js][getting_started], add:
 
 ```javascript
 bower: {
@@ -54,7 +54,7 @@ bower: {
 
 file types without a `[file_type]_dest` will go to `dest` folder.
 
-if you want to have more specific `dest` options for certain pacakges:
+if you want to have more specific `dest` options for certain packages:
 
 ```javascript
 bower: {
