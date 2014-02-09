@@ -51,7 +51,7 @@ exports.init = function(grunt) {
         if(!_(main_path).endsWith('.js')) {
           main_path += '.js';
         }
-        if(existsSync(main_path)) {
+        if(existsSync(main_path) && fs.statSync(main_path).isFile()) {
           return [main_path];
         }
       } else {
