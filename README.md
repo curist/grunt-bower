@@ -94,6 +94,10 @@ bower: {
 
 
 ## Change Logs
+- Feb 13, 2014 v0.8.4
+
+  Using latest `bower`
+
 - Feb 09, 2014 v0.8.0
 
   Reintroduced the ability to handle multiple file support  
