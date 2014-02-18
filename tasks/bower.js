@@ -78,8 +78,8 @@ module.exports = function(grunt) {
               // check if we want to strip 'js' affix in lib_name
               var ext = src_paths[0].split('.').pop()
               if(stripJsAffix) {
-                dest_file_name = lib_name.replace(/\W?js$/, '') + '.' + ext;
-                dest_file_name = lib_name.replace(/\W?css$/, '') + '.' + ext;
+                var regexp = new RegExp("\W?" + ext + "$");
+                dest_file_name = lib_name.replace(regexp, '') + '.' + ext;
               } else {
                 dest_file_name = lib_name + '.' + ext;
               }
