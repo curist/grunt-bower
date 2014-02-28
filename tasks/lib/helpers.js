@@ -48,6 +48,10 @@ exports.init = function(grunt) {
     // check if main attr in components.json have file exists
     if(main_path) {
       if(typeof main_path === 'string') {
+        //Check first if file exists as is.
+        if(existsSync(main_path) && fs.statSync(main_path).isFile()) {
+          return [main_path];
+        }
         if(!_(main_path).endsWith('.js')) {
           main_path += '.js';
         }
