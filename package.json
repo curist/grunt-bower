@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bvkimball/grunt-bower.git"
+    "url": "git://github.com/curist/grunt-bower.git"
   },
   "bugs": {
-    "url": "https://github.com/bvkimball/grunt-bower/issues"
+    "url": "https://github.com/curist/grunt-bower/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/bvkimball/grunt-bower/blob/master/LICENSE-MIT"
+      "url": "https://github.com/curist/grunt-bower/blob/master/LICENSE-MIT"
     }
   ],
   "main": "grunt.js",
