@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     var done = this.async();
     var targets = (this.file) ? [this.file] : this.files;
     var options = this.data.options || {};
-    var stripJsAffix = options.stripJsAffix;
+    var stripAffix = options.stripJsAffix || options.stripAffix;
 
     bower.commands.list({paths: true})
       .on('end',  function (data) {
@@ -75,10 +75,10 @@ module.exports = function(grunt) {
                 }
               }
 
-              // check if we want to strip 'js' affix in lib_name
+              // check if we want to strip file type affix in lib_name
               var ext = src_paths[0].split('.').pop()
-              if(stripJsAffix) {
-                var regexp = new RegExp("\W?" + ext + "$");
+              if(stripAffix) {
+                var regexp = new RegExp("\\.?" + ext + "$");
                 dest_file_name = lib_name.replace(regexp, '') + '.' + ext;
               } else {
                 dest_file_name = lib_name + '.' + ext;
