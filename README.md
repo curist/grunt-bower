@@ -25,20 +25,21 @@ bower: {
 }
 ```
 
-add **stripJsAffix** option if you'd like to have lib names with 'js' affix to be stripped:
+add **stripAffix** option if you'd like to have lib names with its file type affix to be stripped, things like `/\.js$/`, `/js$/` or `/\.css$/` etc.:
 
 ```javascript
 bower: {
   dev: {
     dest: 'dest/path',
     options: {
-      stripJsAffix: true
+      stripAffix: true
     }
   }
 }
 ```
 
-**stripJsAffix** could cause name confliction, use with caution!
+**stripAffix** could cause name confliction, use with caution!
+If you were using `grunt-bower` prior to v0.9.0, **stripJsAffix** is now an alias to **stripAffix** option.
 
 if you want to assign different destination folder for other file types:
 
@@ -94,6 +95,10 @@ bower: {
 
 
 ## Change Logs
+- Mar 01, 2014 v0.9.0
+
+  Better support for bower packages with only css files
+
 - Feb 13, 2014 v0.8.4
 
   Using latest `bower`
