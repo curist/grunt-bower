@@ -78,7 +78,7 @@ module.exports = function(grunt) {
               // check if we want to strip file type affix in lib_name
               var ext = src_paths[0].split('.').pop()
               if(stripAffix) {
-                var regexp = new RegExp("\\.?" + ext + "$");
+                var regexp = new RegExp("\\W?" + ext + "$");
                 dest_file_name = lib_name.replace(regexp, '') + '.' + ext;
               } else {
                 dest_file_name = lib_name + '.' + ext;
