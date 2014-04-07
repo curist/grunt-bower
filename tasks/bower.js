@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                   return _(option).endsWith('_dest');
                 }).map(function(dest_opt) {
                   var ext_name = dest_opt.replace(/_dest$/, '');
-                  return [ext_name, target[dest_opt]];
+                  return [ext_name, package_opt[dest_opt]];
                 }).object().value();
 
                 if(_(package_opt.files).isArray()) {
