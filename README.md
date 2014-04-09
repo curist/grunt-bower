@@ -161,6 +161,10 @@ bower: {
 
 
 ## Change Logs
+- Apr 09, 2014 v0.11.0
+
+  Add `expand` option to have files orgranized by packages. [(Artem Chivchalov)](https://github.com/artch)
+
 - Apr 09, 2014 v0.10.0
 
   Add `ignorePackages` option.  
