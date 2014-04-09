@@ -97,7 +97,7 @@ bower: {
 ## Change Logs
 - Apr 09, 2014 v0.9.3
 
-  Fix a issue when bower components are installed to nested directory.  
+  Fix a issue when bower components are installed to nested directory, `grunt-bower` won't be able to copy component files.  
   Thank you, [Jooyung Han](https://github.com/jooyunghan)
 
 - Feb 05, 2013 v0.5.0
