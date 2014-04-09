@@ -108,34 +108,16 @@ bower: {
 
 
 ## Change Logs
+- Apr 09, 2014 v0.10.0
+
+  Add `ignorePackages` option.  
+  Fix possible issue with `path.sep`.  
+  Thank you, [Artem Chivchalov](https://github.com/artch)!
+
 - Apr 09, 2014 v0.9.3
 
   Fix a issue when bower components are installed to nested directory, `grunt-bower` won't be able to copy component files.  
   Thank you, [Jooyung Han](https://github.com/jooyunghan)
-
-- Feb 05, 2013 v0.5.0
-
-  add option `stripJsAffix` to strip `/\W?js$/` in outputed file name.
-
-- Feb 05, 2013 v0.4.4
-
-  Grunt v0.4.0+ support, for real.
-
-- Jan 31, 2013 v0.4.3
-
-  Don't throw user out with error, and provides a little more informative warning messages.
-
-- Jan 11, 2013 v0.4.2a
-
-  Grunt v0.4.0+ support
-
-- Dec 15, 2012 v0.4.2
-
-  better handling the way to get file path to be copied, Bower v0.4.0 and above are supported
-
-- Dec 14, 2012 v0.4.1
-
-  try to guess the library file name if not provided by the installed component
 
 - Mar 01, 2014 v0.9.0
 
@@ -154,10 +136,6 @@ bower: {
 
   Added css and multiple file support  
   Thank you, [Juri Saltbacka](https://github.com/3bola)!!
-
-- Jul 28, 2013 v0.6.1
-
-  support bower v1.0.0
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
