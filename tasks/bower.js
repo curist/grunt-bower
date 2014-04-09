@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                 return;
               }
             }
-			
+
             if(src_paths.length == 0) {
               throw "no files";
             }
@@ -95,7 +95,11 @@ module.exports = function(grunt) {
 
               if(src_paths.length == 1) {
                 var ext_name = dest_file_name.split('.').pop();
-                dest_file_path = path.join(dests[ext_name] || dest, options.expand ? lib_name : '', dest_file_name);
+                dest_file_path = path.join(
+                  dests[ext_name] || dest,
+                  options.expand ? lib_name : '',
+                  dest_file_name
+                );
                 grunt.file.copy(src_paths[0], dest_file_path);
                 log(src_paths[0].cyan + ' copied.\n');
 
@@ -106,7 +110,11 @@ module.exports = function(grunt) {
                   var dest_dir = package_dests[ext_name] ||
                     dests[ext_name] || package_dest || dest;
 
-                  dest_file_path = path.join(dest_dir, options.expand ? lib_name : '', file_name);
+                  dest_file_path = path.join(
+                    dest_dir,
+                    options.expand ? lib_name : '',
+                    file_name
+                  );
                   try{
                     grunt.file.copy(src_path, dest_file_path);
                     log(src_path.cyan + ' copied.\n');
