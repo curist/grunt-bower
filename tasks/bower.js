@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 
               } else {
                 src_paths.forEach(function(src_path) {
-                  var file_name = src_path.split(path.sep).pop();
+                  var file_name = src_path.split(/[\\\/]/).pop();
                   var ext_name = file_name.split('.').pop();
                   var dest_dir = package_dests[ext_name] ||
                     dests[ext_name] || package_dest || dest;
