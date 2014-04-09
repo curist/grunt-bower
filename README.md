@@ -106,6 +106,59 @@ bower: {
 }
 ```
 
+If you want the exported files to be organized by package, use `expand` option. For example, such config will result in the file structure like this:
+
+```javascript
+bower: {
+  dev: {
+    dest: 'public/vendor/',
+    options: {
+      expand: true
+    }
+  }
+}
+```
+```
+/public
+  /vendor
+    /package1
+	  package1_file1.js
+	  package1_file2.js
+	  package1.css
+	/package2
+	  package2.js
+	  package2.css
+```
+
+Or organized by file type in addition:
+	
+```javascript
+bower: {
+  dev: {
+    dest: 'public/',
+	js_dest: 'public/js/'
+	css_dest: 'public/css/',
+    options: {
+      expand: true
+    }
+  }
+}
+```
+```
+/public
+  /js
+    /package1
+	  package1_file1.js
+	  package1_file2.js
+	/package2
+	  package2.js
+  /css
+    /package1
+	  package1.css
+	/package2
+	  package2.css
+```  
+
 
 ## Change Logs
 - Apr 09, 2014 v0.10.0
