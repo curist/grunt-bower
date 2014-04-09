@@ -40,7 +40,7 @@ module.exports = function(grunt) {
           );
 
           try {
-		    if(options.ignorePackages) {
+            if(options.ignorePackages) {
               if(!Array.isArray(options.ignorePackages)) {
                 throw "`ignorePackages` is not an array";
               }
