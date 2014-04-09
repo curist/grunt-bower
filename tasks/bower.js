@@ -40,6 +40,15 @@ module.exports = function(grunt) {
           );
 
           try {
+            if(options.ignorePackages) {
+              if(!Array.isArray(options.ignorePackages)) {
+                throw "`ignorePackages` is not an array";
+              }
+              if(options.ignorePackages.indexOf(lib_name) != -1) {
+                return;
+              }
+            }
+			
             if(src_paths.length == 0) {
               throw "no files";
             }

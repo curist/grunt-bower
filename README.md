@@ -93,6 +93,19 @@ bower: {
 }
 ```
 
+You can ignore some packages if you don't want them to be copied:
+
+```javascript
+bower: {
+  dev: {
+    dest: 'public/',
+    options: {
+      ignorePackages: ['jquery']
+    }
+  }
+}
+```
+
 
 ## Change Logs
 - Apr 09, 2014 v0.9.3
