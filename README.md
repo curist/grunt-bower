@@ -95,27 +95,10 @@ bower: {
 
 
 ## Change Logs
-- Mar 01, 2014 v0.9.0
+- Apr 09, 2014 v0.9.3
 
-  Better support for bower packages with only css files
-
-- Feb 13, 2014 v0.8.4
-
-  Using latest `bower`
-
-- Feb 09, 2014 v0.8.0
-
-  Reintroduced the ability to handle multiple file support  
-  Removed `basePath` option
-
-- Sep 30, 2013 v0.7.0
-
-  Added css and multiple file support  
-  Thank you, [Juri Saltbacka](https://github.com/3bola)!!
-
-- Jul 28, 2013 v0.6.1
-
-  support bower v1.0.0
+  Fix a issue when bower components are installed to nested directory.  
+  Thank you, [Jooyung Han](https://github.com/jooyunghan)
 
 - Feb 05, 2013 v0.5.0
 
@@ -140,6 +123,28 @@ bower: {
 - Dec 14, 2012 v0.4.1
 
   try to guess the library file name if not provided by the installed component
+
+- Mar 01, 2014 v0.9.0
+
+  Better support for bower packages with only css files
+
+- Feb 13, 2014 v0.8.4
+
+  Using latest `bower`
+
+- Feb 09, 2014 v0.8.0
+
+  Reintroduced the ability to handle multiple file support  
+  Removed `basePath` option
+
+- Sep 30, 2013 v0.7.0
+
+  Added css and multiple file support  
+  Thank you, [Juri Saltbacka](https://github.com/3bola)!!
+
+- Jul 28, 2013 v0.6.1
+
+  support bower v1.0.0
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
