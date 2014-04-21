@@ -161,9 +161,13 @@ bower: {
 
 
 ## Change Logs
+- Apr 21, 2014
+
+  Fix issue #25: packageSpecific dest option not followed ([Tomislav Capan](https://github.com/zappan))
+
 - Apr 09, 2014 v0.11.0
 
-  Add `expand` option to have files orgranized by packages. [(Artem Chivchalov)](https://github.com/artch)
+  Add `expand` option to have files orgranized by packages. ([Artem Chivchalov](https://github.com/artch))
 
 - Apr 09, 2014 v0.10.0
 
