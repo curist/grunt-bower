@@ -78,9 +78,9 @@ module.exports = function(grunt) {
                 }).object().value();
 
                 if(_(package_opt.files).isArray()) {
-                  src_paths = src_paths.concat(_(package_opt.files).map(function(file) {
+                  src_paths = _(package_opt.files).map(function(file) {
                     return path.join(bower.config.directory, lib_name, file);
-                  }));
+                  });
                 }
               }
 
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
                 dest_file_name = lib_name + '.' + ext;
               }
 
-              if(src_paths.length == 1) {
+              if(src_paths.length == 1 && (!package_opt || !package_opt.files)) {
                 var ext_name = dest_file_name.split('.').pop();
                 dest_file_path = path.join(
                   package_dests[ext_name] || dests[ext_name] || package_dest || dest,
