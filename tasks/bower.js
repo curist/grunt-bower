@@ -93,7 +93,7 @@ module.exports = function(grunt) {
                 dest_file_name = lib_name + '.' + ext;
               }
 
-              if(src_paths.length == 1) {
+              if(src_paths.length == 1 && (!package_opt || !package_opt.files)) {
                 var ext_name = dest_file_name.split('.').pop();
                 dest_file_path = path.join(
                   package_dests[ext_name] || dests[ext_name] || package_dest || dest,
