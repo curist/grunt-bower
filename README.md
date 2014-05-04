@@ -161,7 +161,11 @@ bower: {
 
 
 ## Change Logs
-- Apr 21, 2014
+- May 04, 2014 v0.12.0
+
+  Add support for path expansion. ([Antoine Auberger](https://github.com/Antwan86))
+
+- Apr 21, 2014 v0.11.1
 
   Fix issue #25: packageSpecific dest option not followed ([Tomislav Capan](https://github.com/zappan))
 
