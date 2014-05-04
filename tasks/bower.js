@@ -78,9 +78,10 @@ module.exports = function(grunt) {
                 }).object().value();
 
                 if(_(package_opt.files).isArray()) {
-                  src_paths = src_paths.concat(_(package_opt.files).map(function(file) {
-                    return path.join(bower.config.directory, lib_name, file);
-                  }));
+                  src_paths = _(package_opt.files).reduce(function(paths, file) {
+                    var raw_path = path.join(bower.config.directory, lib_name, file);
+                    return paths.concat(grunt.file.expand(raw_path));
+                  }, []);
                 }
               }
 
