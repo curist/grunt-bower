@@ -78,9 +78,9 @@ module.exports = function(grunt) {
                 }).object().value();
 
                 if(_(package_opt.files).isArray()) {
-                  src_paths = src_paths.concat(_(package_opt.files).map(function(file) {
-                    return path.join(bower.config.directory, lib_name, file);
-                  }));
+                  src_paths = _(package_opt.files).reduce(function(p, file) {
+                    return p.concat(grunt.file.expand(path.join(bower.config.directory, lib_name, file)));
+                  }, []);
                 }
               }
 
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
                 dest_file_name = lib_name + '.' + ext;
               }
 
-              if(src_paths.length == 1) {
+              if(src_paths.length == 1 && (!package_opt || !package_opt.files)) {
                 var ext_name = dest_file_name.split('.').pop();
                 dest_file_path = path.join(
                   package_dests[ext_name] || dests[ext_name] || package_dest || dest,
@@ -104,10 +104,15 @@ module.exports = function(grunt) {
                 log(src_paths[0].cyan + ' copied.\n');
 
               } else {
+                var expanded_dir = '', file_name, ext_name, dest_dir;
+                var flatten = package_opt.keepExpandedHierarchy === false || options.keepExpandedHierarchy === false;
                 src_paths.forEach(function(src_path) {
-                  var file_name = src_path.split(/[\\\/]/).pop();
-                  var ext_name = file_name.split('.').pop();
-                  var dest_dir = package_dests[ext_name] ||
+                  if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1)
+                    file_name = src_path.replace(expanded_dir, '');
+                  else
+                    file_name = src_path.split(/[\\\/]/).pop();
+                  ext_name = file_name.split('.').pop();
+                  dest_dir = package_dests[ext_name] ||
                     dests[ext_name] || package_dest || dest;
 
                   dest_file_path = path.join(
@@ -116,8 +121,16 @@ module.exports = function(grunt) {
                     file_name
                   );
                   try{
-                    grunt.file.copy(src_path, dest_file_path);
-                    log(src_path.cyan + ' copied.\n');
+                    if (file_name && grunt.file.isDir(src_path)) {
+                      if (!flatten && !expanded_dir) {
+                        expanded_dir = src_path;
+                      } else if (!flatten && src_path.indexOf(expanded_dir) == -1) {
+                        expanded_dir = '';
+                      }
+                    } else if (file_name) {
+                      grunt.file.copy(src_path, dest_file_path);
+                      log(dest_file_path.cyan + ' copied.\n');
+                    }
                   } catch(e) {
                     log(('Fail to copy ').red +
                         src_path.yellow + (' for ').red +
