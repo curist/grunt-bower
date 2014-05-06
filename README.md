@@ -25,7 +25,7 @@ bower: {
 }
 ```
 
-add **stripAffix** option if you'd like to have lib names with its file type affix to be stripped, things like `/\.js$/`, `/js$/` or `/\.css$/` etc.:
+Add **stripAffix** option if you'd like to have lib names with its file type affix to be stripped, things like `/\.js$/`, `/js$/` or `/\.css$/` etc.:
 
 ```javascript
 bower: {
@@ -41,7 +41,7 @@ bower: {
 **stripAffix** could cause name confliction, use with caution!
 If you were using `grunt-bower` prior to v0.9.0, **stripJsAffix** is now an alias to **stripAffix** option.
 
-if you want to assign different destination folder for other file types:
+If you want to assign different destination folder for other file types:
 
 ```javascript
 bower: {
@@ -53,9 +53,9 @@ bower: {
 }
 ```
 
-file types without a `[file_type]_dest` will go to `dest` folder.
+File types without a `[file_type]_dest` will go to `dest` folder.
 
-if you want to have more specific `dest` options for certain packages:
+If you want to have more specific `dest` options for certain packages:
 
 ```javascript
 bower: {
@@ -74,7 +74,7 @@ bower: {
 }
 ```
 
-finally, if `grunt-bower` not copying the files you want:
+If `grunt-bower` not copying the files you want:
 
 ```javascript
 bower: {
@@ -159,8 +159,33 @@ bower: {
 	  package2.css
 ```  
 
+For file path expansion (globbing):
+```javascript
+bower: {
+  dev: {
+    options: {
+      packageSpecific: {
+	'jquery-ui': {
+	  keepExpandedHierarchy: true,
+	  files: [
+	    'ui/minified/jquery-ui.min.js',
+	    'themes/base/minified/**'
+	  ]
+	}
+      }
+    }
+  }
+}
+```
+`keepExpandedHierarchy` default to true, you have to explicitly set it to `false` if you want a flattened output structure.
+
+
 
 ## Change Logs
+- May 06, 2014 v0.13.0
+
+  Add `keepExpandedHierarchy`. ([Antoine Auberger](https://github.com/Antwan86))
+
 - May 04, 2014 v0.12.0
 
   Add support for path expansion. ([Antoine Auberger](https://github.com/Antwan86))
