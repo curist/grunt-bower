@@ -122,22 +122,22 @@ bower: {
 /public
   /vendor
     /package1
-	  package1_file1.js
-	  package1_file2.js
-	  package1.css
-	/package2
-	  package2.js
-	  package2.css
+      package1_file1.js
+      package1_file2.js
+      package1.css
+    /package2
+      package2.js
+      package2.css
 ```
 
 Or organized by file type in addition:
-	
+
 ```javascript
 bower: {
   dev: {
     dest: 'public/',
-	js_dest: 'public/js/'
-	css_dest: 'public/css/',
+    js_dest: 'public/js/'
+    css_dest: 'public/css/',
     options: {
       expand: true
     }
@@ -148,16 +148,16 @@ bower: {
 /public
   /js
     /package1
-	  package1_file1.js
-	  package1_file2.js
-	/package2
-	  package2.js
+      package1_file1.js
+      package1_file2.js
+    /package2
+      package2.js
   /css
     /package1
-	  package1.css
-	/package2
-	  package2.css
-```  
+      package1.css
+    /package2
+      package2.css
+```
 
 For file path expansion (globbing):
 ```javascript
@@ -165,13 +165,13 @@ bower: {
   dev: {
     options: {
       packageSpecific: {
-	'jquery-ui': {
-	  keepExpandedHierarchy: true,
-	  files: [
-	    'ui/minified/jquery-ui.min.js',
-	    'themes/base/minified/**'
-	  ]
-	}
+        'jquery-ui': {
+          keepExpandedHierarchy: true,
+          files: [
+            'ui/minified/jquery-ui.min.js',
+            'themes/base/minified/**'
+          ]
+        }
       }
     }
   }
