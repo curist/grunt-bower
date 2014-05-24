@@ -67,9 +67,8 @@ module.exports = function(grunt) {
               var package_dest = '';
               var package_dests = {};
               var package_opt = options.packageSpecific &&
-                options.packageSpecific[lib_name] || {};
-
-              if(options.packageSpecific[lib_name]) {
+                options.packageSpecific[lib_name];
+              if(package_opt) {
                 package_dest = package_opt.dest;
                 package_dests = _(Object.keys(package_opt)).chain().filter(function(option) {
                   return _(option).endsWith('_dest');
@@ -94,7 +93,7 @@ module.exports = function(grunt) {
                 dest_file_name = lib_name + '.' + ext;
               }
 
-              if(src_paths.length == 1 && !package_opt.files) {
+              if(src_paths.length == 1 && (!package_opt || !package_opt.files)) {
                 var ext_name = dest_file_name.split('.').pop();
                 dest_file_path = path.join(
                   package_dests[ext_name] || dests[ext_name] || package_dest || dest,
@@ -107,9 +106,8 @@ module.exports = function(grunt) {
               } else {
                 var expanded_dir = '', file_name, ext_name, dest_dir;
                 var flatten =
-                  package_opt.keepExpandedHierarchy === false ||
+                  (package_opt && package_opt.keepExpandedHierarchy === false) ||
                   options.keepExpandedHierarchy === false;
-
                 src_paths.forEach(function(src_path) {
                   if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1)
                     file_name = src_path.replace(expanded_dir, '');
