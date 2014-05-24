@@ -182,7 +182,7 @@ bower: {
 
 
 ## Change Logs
-[Check here.](https://github.com/curist/grunt-bower/blob/master/package.json)
+[Check here.](https://github.com/curist/grunt-bower/blob/master/CHANGELOG.md)
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
