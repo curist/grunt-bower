@@ -105,7 +105,7 @@ module.exports = function(grunt) {
 
               } else {
                 var expanded_dir = '', file_name, ext_name, dest_dir;
-                var flatten = package_opt.keepExpandedHierarchy === false || options.keepExpandedHierarchy === false;
+                var flatten = options.keepExpandedHierarchy === false;
                 src_paths.forEach(function(src_path) {
                   if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1)
                     file_name = src_path.replace(expanded_dir, '');
