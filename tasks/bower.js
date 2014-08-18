@@ -108,11 +108,17 @@ module.exports = function(grunt) {
                 var flatten =
                   (package_opt && package_opt.keepExpandedHierarchy === false) ||
                   options.keepExpandedHierarchy === false;
-                src_paths.forEach(function(src_path) {
+                for(var i=0; i<src_paths.length; ++i){
+                  var src_path = src_paths[i];
                   if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1)
                     file_name = src_path.replace(expanded_dir, '');
                   else
                     file_name = src_path.split(/[\\\/]/).pop();
+
+                  if(src_path[src_path.length-1] === '*'){
+                    src_path = src_path.slice(0, -2);
+                  }
+
                   ext_name = file_name.split('.').pop();
                   dest_dir = package_dests[ext_name] ||
                     dests[ext_name] || package_dest || dest;
@@ -129,6 +135,9 @@ module.exports = function(grunt) {
                       } else if (!flatten && src_path.indexOf(expanded_dir) == -1) {
                         expanded_dir = '';
                       }
+                      grunt.file.recurse(src_path, function(abspath){
+                        src_paths.push(abspath);
+                      });
                     } else if (file_name) {
                       grunt.file.copy(src_path, dest_file_path);
                       log(dest_file_path.cyan + ' copied.\n');
@@ -138,7 +147,7 @@ module.exports = function(grunt) {
                         src_path.yellow + (' for ').red +
                         lib_name.yellow + ('!\n').red);
                   }
-                });
+                }
               }
             });
           } catch (err) {
