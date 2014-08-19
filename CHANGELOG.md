@@ -1,3 +1,6 @@
+- Aug 19, 2014 v0.14.0
+  Add support for wildcard in file paths. ([FREEZX](https://github.com/FREEZX))
+
 - May 24, 2014 v0.13.2
   Fix when `package_opt` missing, bad things can happen.
 
