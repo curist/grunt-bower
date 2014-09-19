@@ -68,6 +68,8 @@ module.exports = function(grunt) {
               var package_dests = {};
               var package_opt = options.packageSpecific &&
                 options.packageSpecific[lib_name];
+              var expanded_dir = grunt.file.expand(path.join(bower.config.directory, lib_name)).shift();
+              
               if(package_opt) {
                 package_dest = package_opt.dest;
                 package_dests = _(Object.keys(package_opt)).chain().filter(function(option) {
@@ -104,7 +106,7 @@ module.exports = function(grunt) {
                 log(src_paths[0].cyan + ' copied.\n');
 
               } else {
-                var expanded_dir = '', file_name, ext_name, dest_dir;
+                var file_name, ext_name, dest_dir;
                 var flatten =
                   (package_opt && package_opt.keepExpandedHierarchy === false) ||
                   options.keepExpandedHierarchy === false;
