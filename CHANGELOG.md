@@ -1,3 +1,7 @@
+- Sep 20, 2014 v0.14.1
+
+  Fix package folder flattening. ([ertrzyiks](https://github.com/ertrzyiks))
+
 - Aug 19, 2014 v0.14.0
 
   Add support for wildcard in file paths. ([FREEZX](https://github.com/FREEZX))
