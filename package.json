@@ -25,7 +25,7 @@
     "node": "*"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "cd ./test/boilerplate && npm install && node run_test.js"
   },
   "dependencies": {
     "bower": "~1.2.8"

@@ -21,11 +21,6 @@ module.exports = function (grunt) {
           packageSpecific: {
             'font-awesome': {
 
-            },
-            jquery: {
-              files: [
-                'build/*'
-              ]
             }
           }
         }
