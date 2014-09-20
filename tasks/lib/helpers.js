@@ -48,7 +48,7 @@ exports.init = function(grunt) {
     // check if main attr in components.json have file exists
     if(main_path) {
       if(typeof main_path === 'string') {
-        //Check first if file exists as is.
+        // Check first if file exists as it is.
         if(existsSync(main_path) && fs.statSync(main_path).isFile()) {
           return [main_path];
         }
@@ -59,7 +59,7 @@ exports.init = function(grunt) {
           return [main_path];
         }
       } else {
-        // array, falling through
+        // array, return as it is
         return main_path;
       }
     }

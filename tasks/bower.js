@@ -78,6 +78,7 @@ module.exports = function(grunt) {
                 }).object().value();
 
                 if(_(package_opt.files).isArray()) {
+                  // FIXME src_paths should be concat with the original src_paths
                   src_paths = _(package_opt.files).reduce(function(p, file) {
                     return p.concat(grunt.file.expand(path.join(bower.config.directory, lib_name, file)));
                   }, []);
@@ -112,14 +113,19 @@ module.exports = function(grunt) {
                 if(!flatten) {
                   expanded_dir = grunt.file.expand(path.join(bower.config.directory, lib_name)).shift();
                 }
+
                 _(src_paths).chain().map(function(src_path) {
                   return grunt.file.expand(src_path);
-                }).flatten().each(function(src_path) {
+                }).flatten().map(function(src_path) {
+                  var baseDirRegex = new RegExp(bower.config.cwd + '/?');
+                  return src_path.replace(baseDirRegex, '');
+                }).each(function(src_path) {
 
-                  if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1)
+                  if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1) {
                     file_name = src_path.replace(expanded_dir, '');
-                  else
+                  } else {
                     file_name = src_path.split(/[\\\/]/).pop();
+                  }
                   ext_name = file_name.split('.').pop();
                   dest_dir = package_dests[ext_name] ||
                     dests[ext_name] || package_dest || dest;
@@ -129,6 +135,7 @@ module.exports = function(grunt) {
                     options.expand ? lib_name : '',
                     file_name
                   );
+
                   try{
                     if (file_name && grunt.file.isDir(src_path)) {
                       if (!flatten && !expanded_dir) {
