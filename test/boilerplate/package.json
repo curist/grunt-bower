@@ -1,0 +1,10 @@
+{
+  "name": "foo",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-bower": "*",
+    "grunt-contrib-clean": "~ 0.5.0",
+    "time-grunt": "~0.2.9",
+    "jit-grunt": "~0.2.1"
+  }
+}
