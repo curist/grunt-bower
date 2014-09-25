@@ -52,6 +52,23 @@ module.exports = function (grunt) {
             }
           }
         }
+      },
+      test4: {
+        dest: 'public/js/lib',
+        options: {
+          expand: true,
+          stripJsAffix: true,
+          keepExpandedHierarchy: false,
+          packageSpecific: {
+            'jquery-ui': {
+              keepExpandedHierarchy: true,
+              stripGlobBase: true,
+              files: [
+                'ui/minified/**'
+              ]
+            }
+          }
+        }
       }
     },
     clean: {

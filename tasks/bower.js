@@ -68,7 +68,12 @@ module.exports = function(grunt) {
               var package_dests = {};
               var package_opt = options.packageSpecific &&
                 options.packageSpecific[lib_name];
+              var strip_glob_base = false;
+              var relative_glob_expanded_path = {};
+
               if(package_opt) {
+                strip_glob_base = typeof package_opt.stripGlobBase !== 'undefined'
+                    ? package_opt.stripGlobBase : options.stripGlobBase;
                 package_dest = package_opt.dest;
                 package_dests = _(Object.keys(package_opt)).chain().filter(function(option) {
                   return _(option).endsWith('_dest');
@@ -80,7 +85,25 @@ module.exports = function(grunt) {
                 if(_(package_opt.files).isArray()) {
                   // FIXME src_paths should be concat with the original src_paths
                   src_paths = _(package_opt.files).reduce(function(p, file) {
-                    return p.concat(grunt.file.expand(path.join(bower.config.directory, lib_name, file)));
+                    var full_path = path.join(bower.config.directory, lib_name, file);
+                    if(/\*/.test(file)) {
+                      // var glob_base = path.join(bower.config.directory, lib_name, file.replace(/\*.*$/, ''));
+                      // var glob_pattern = file.replace(/^[^\*]*/,'');
+                      var expanded_paths = grunt.file.expand({filter: 'isFile'}, full_path);
+
+                      if(strip_glob_base) {
+                        var glob_base = path.join(bower.config.directory, lib_name, file.replace(/\*.*$/, ''));
+                        var glob_base_re = new RegExp('^' + glob_base);
+                        expanded_paths.forEach(function(expanded_path) {
+                          var relatie_path = expanded_path.replace(glob_base_re, '');
+                          relative_glob_expanded_path[expanded_path] = relatie_path;
+                        });
+                      }
+                      return p.concat(expanded_paths);
+
+                    } else {
+                      return p.concat(full_path);
+                    }
                   }, []);
                 }
               }
@@ -107,8 +130,9 @@ module.exports = function(grunt) {
               } else {
                 var expanded_dir = '', file_name, ext_name, dest_dir;
                 var flatten =
-                  (package_opt && package_opt.keepExpandedHierarchy === false) ||
-                  options.keepExpandedHierarchy === false;
+                  (package_opt && typeof package_opt.keepExpandedHierarchy != 'undefined')
+                  ? !package_opt.keepExpandedHierarchy
+                  : options.keepExpandedHierarchy === false;
 
                 if(!flatten) {
                   expanded_dir = grunt.file.expand(path.join(bower.config.directory, lib_name)).shift();
@@ -133,7 +157,7 @@ module.exports = function(grunt) {
                   dest_file_path = path.join(
                     dest_dir,
                     options.expand ? lib_name : '',
-                    file_name
+                    (!flatten && strip_glob_base) ? relative_glob_expanded_path[src_path] : file_name
                   );
 
                   try{

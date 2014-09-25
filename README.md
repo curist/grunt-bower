@@ -167,6 +167,7 @@ bower: {
       packageSpecific: {
         'jquery-ui': {
           keepExpandedHierarchy: true,
+          stripGlobBase: true,
           files: [
             'ui/minified/jquery-ui.min.js',
             'themes/base/minified/**'
@@ -177,7 +178,8 @@ bower: {
   }
 }
 ```
-`keepExpandedHierarchy` default to true, you have to explicitly set it to `false` if you want a flattened output structure.
+`keepExpandedHierarchy` default to true, you have to explicitly set it to `false` if you want a flattened output structure.  
+Set `stripGlobBase` to true if you only want to keep the expanded part in the globbing pattern.
 
 
 

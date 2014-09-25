@@ -1,3 +1,8 @@
+- Sep 25, 2014 v0.15.0
+
+  Add option to strip globbing pattern's base.  
+  Fix `keepExpandedHierarchy` overriding.
+
 - Sep 20, 2014 v0.14.1
 
   Fix package folder flattening. ([ertrzyiks](https://github.com/ertrzyiks))

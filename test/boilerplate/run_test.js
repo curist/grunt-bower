@@ -81,6 +81,32 @@ public
 
 5 directories, 10 files
 */})
+}, {
+  name: 'test4',
+  expected_output: ml(function() { /*
+public
+└── js
+    └── lib
+        ├── font-awesome
+        │   ├── FontAwesome.otf
+        │   ├── font-awesome.css
+        │   ├── fontawesome-webfont.eot
+        │   ├── fontawesome-webfont.svg
+        │   ├── fontawesome-webfont.ttf
+        │   └── fontawesome-webfont.woff
+        ├── jquery
+        │   └── jquery.js
+        └── jquery-ui
+            ├── accordion.min.js
+            ├── autocomplete.min.js
+            ├── button.min.js
+            └── i18n
+                ├── datepicker-af.min.js
+                ├── datepicker-ar-DZ.min.js
+                └── datepicker-ca.min.js
+
+6 directories, 13 files
+*/})
 }];
 
 tests.forEach(function(test) {
