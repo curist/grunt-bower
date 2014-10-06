@@ -117,67 +117,55 @@ module.exports = function(grunt) {
                 dest_file_name = lib_name + '.' + ext;
               }
 
-              if(src_paths.length == 1 && (!package_opt || !package_opt.files)) {
-                var ext_name = dest_file_name.split('.').pop();
-                dest_file_path = path.join(
-                  package_dests[ext_name] || dests[ext_name] || package_dest || dest,
-                  options.expand ? lib_name : '',
-                  dest_file_name
-                );
-                grunt.file.copy(src_paths[0], dest_file_path);
-                log(src_paths[0].cyan + ' copied.\n');
+              var expanded_dir = '', file_name, ext_name, dest_dir;
+              var flatten =
+                (package_opt && typeof package_opt.keepExpandedHierarchy != 'undefined')
+                ? !package_opt.keepExpandedHierarchy
+                : options.keepExpandedHierarchy === false;
 
-              } else {
-                var expanded_dir = '', file_name, ext_name, dest_dir;
-                var flatten =
-                  (package_opt && typeof package_opt.keepExpandedHierarchy != 'undefined')
-                  ? !package_opt.keepExpandedHierarchy
-                  : options.keepExpandedHierarchy === false;
-
-                if(!flatten) {
-                  expanded_dir = grunt.file.expand(path.join(bower.config.directory, lib_name)).shift();
-                }
-
-                _(src_paths).chain().map(function(src_path) {
-                  return grunt.file.expand(src_path);
-                }).flatten().map(function(src_path) {
-                  var baseDirRegex = new RegExp(bower.config.cwd + '/?');
-                  return src_path.replace(baseDirRegex, '');
-                }).each(function(src_path) {
-
-                  if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1) {
-                    file_name = src_path.replace(expanded_dir, '');
-                  } else {
-                    file_name = src_path.split(/[\\\/]/).pop();
-                  }
-                  ext_name = file_name.split('.').pop();
-                  dest_dir = package_dests[ext_name] ||
-                    dests[ext_name] || package_dest || dest;
-
-                  dest_file_path = path.join(
-                    dest_dir,
-                    options.expand ? lib_name : '',
-                    (!flatten && strip_glob_base) ? relative_glob_expanded_path[src_path] : file_name
-                  );
-
-                  try{
-                    if (file_name && grunt.file.isDir(src_path)) {
-                      if (!flatten && !expanded_dir) {
-                        expanded_dir = src_path;
-                      } else if (!flatten && src_path.indexOf(expanded_dir) == -1) {
-                        expanded_dir = '';
-                      }
-                    } else if (file_name) {
-                      grunt.file.copy(src_path, dest_file_path);
-                      log(dest_file_path.cyan + ' copied.\n');
-                    }
-                  } catch(e) {
-                    log(('Fail to copy ').red +
-                        src_path.yellow + (' for ').red +
-                        lib_name.yellow + ('!\n').red);
-                  }
-                });
+              if(!flatten) {
+                expanded_dir = grunt.file.expand(path.join(bower.config.directory, lib_name)).shift();
               }
+
+              _(src_paths).chain().map(function(src_path) {
+                return grunt.file.expand(src_path);
+              }).flatten().map(function(src_path) {
+                var baseDirRegex = new RegExp(bower.config.cwd + '/?');
+                return src_path.replace(baseDirRegex, '');
+              }).each(function(src_path) {
+
+                if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1) {
+                  file_name = src_path.replace(expanded_dir, '');
+                } else {
+                  file_name = src_path.split(/[\\\/]/).pop();
+                }
+                ext_name = file_name.split('.').pop();
+                dest_dir = package_dests[ext_name] ||
+                  dests[ext_name] || package_dest || dest;
+
+                dest_file_path = path.join(
+                  dest_dir,
+                  options.expand ? lib_name : '',
+                  (!flatten && strip_glob_base) ? relative_glob_expanded_path[src_path] : file_name
+                );
+
+                try{
+                  if (file_name && grunt.file.isDir(src_path)) {
+                    if (!flatten && !expanded_dir) {
+                      expanded_dir = src_path;
+                    } else if (!flatten && src_path.indexOf(expanded_dir) == -1) {
+                      expanded_dir = '';
+                    }
+                  } else if (file_name) {
+                    grunt.file.copy(src_path, dest_file_path);
+                    log(dest_file_path.cyan + ' copied.\n');
+                  }
+                } catch(e) {
+                  log(('Fail to copy ').red +
+                      src_path.yellow + (' for ').red +
+                      lib_name.yellow + ('!\n').red);
+                }
+              });
             });
           } catch (err) {
             log(('Fail to copy lib file for ' + lib_name + '!\n').red);
