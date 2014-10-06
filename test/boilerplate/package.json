@@ -1,5 +1,7 @@
 {
-  "name": "foo",
+  "name": "grunt-bower-tests",
+  "repository": "foo",
+  "description": "tests",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-bower": "*",
