@@ -1,3 +1,7 @@
+- Oct 06, 2014 v0.15.1
+
+  Stop treating 1 source file as special cases.
+
 - Sep 25, 2014 v0.15.0
 
   Add option to strip globbing pattern's base.  
