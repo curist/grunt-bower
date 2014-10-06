@@ -1,117 +1,28 @@
 var sh = require('shelljs');
-var ml = require('multiline');
+var grunt = require('grunt');
+grunt.task.loadNpmTasks('grunt-contrib-clean');
+grunt.task.loadNpmTasks('grunt-bower');
 
 var tests = [{
   name: 'basic',
-  expected_output: ml(function() {/*
-public
-└── js
-    └── lib
-        ├── css
-        │   └── font-awesome.css
-        ├── fonts
-        │   ├── FontAwesome.otf
-        │   ├── fontawesome-webfont.eot
-        │   ├── fontawesome-webfont.svg
-        │   ├── fontawesome-webfont.ttf
-        │   └── fontawesome-webfont.woff
-        ├── jquery-ui.js
-        └── jquery.js
-
-4 directories, 8 files
-*/})
+  expected_output: 'public/js,public/js/lib,public/js/lib/css,public/js/lib/css/font-awesome.css,public/js/lib/fonts,public/js/lib/fonts/FontAwesome.otf,public/js/lib/fonts/fontawesome-webfont.eot,public/js/lib/fonts/fontawesome-webfont.svg,public/js/lib/fonts/fontawesome-webfont.ttf,public/js/lib/fonts/fontawesome-webfont.woff,public/js/lib/jquery-ui.js,public/js/lib/jquery.js'
 }, {
   name: 'test1',
-  expected_output: ml(function() {/*
-public
-└── js
-    └── lib
-        ├── FontAwesome.otf
-        ├── font-awesome.css
-        ├── fontawesome-webfont.eot
-        ├── fontawesome-webfont.svg
-        ├── fontawesome-webfont.ttf
-        ├── fontawesome-webfont.woff
-        ├── jquery-ui.js
-        └── jquery.js
-
-2 directories, 8 files
-*/})
+  expected_output: 'public/js,public/js/lib,public/js/lib/FontAwesome.otf,public/js/lib/font-awesome.css,public/js/lib/fontawesome-webfont.eot,public/js/lib/fontawesome-webfont.svg,public/js/lib/fontawesome-webfont.ttf,public/js/lib/fontawesome-webfont.woff,public/js/lib/jquery-ui.js,public/js/lib/jquery.js'
 }, {
   name: 'test2',
-  expected_output: ml(function() {/*
-public
-└── js
-    └── lib
-        ├── font-awesome
-        │   ├── css
-        │   │   └── font-awesome.css
-        │   └── fonts
-        │       ├── FontAwesome.otf
-        │       ├── fontawesome-webfont.eot
-        │       ├── fontawesome-webfont.svg
-        │       ├── fontawesome-webfont.ttf
-        │       └── fontawesome-webfont.woff
-        ├── jquery
-        │   └── jquery.js
-        └── jquery-ui
-            └── jquery-ui.js
-
-7 directories, 8 files
-*/})
+  expected_output: 'public/js,public/js/lib,public/js/lib/font-awesome,public/js/lib/font-awesome/css,public/js/lib/font-awesome/css/font-awesome.css,public/js/lib/font-awesome/fonts,public/js/lib/font-awesome/fonts/FontAwesome.otf,public/js/lib/font-awesome/fonts/fontawesome-webfont.eot,public/js/lib/font-awesome/fonts/fontawesome-webfont.svg,public/js/lib/font-awesome/fonts/fontawesome-webfont.ttf,public/js/lib/font-awesome/fonts/fontawesome-webfont.woff,public/js/lib/jquery,public/js/lib/jquery-ui,public/js/lib/jquery-ui/jquery-ui.js,public/js/lib/jquery/jquery.js'
 }, {
   name: 'test3',
-  expected_output: ml(function() {/*
-public
-└── js
-    └── lib
-        ├── font-awesome
-        │   ├── FontAwesome.otf
-        │   ├── font-awesome.css
-        │   ├── fontawesome-webfont.eot
-        │   ├── fontawesome-webfont.svg
-        │   ├── fontawesome-webfont.ttf
-        │   └── fontawesome-webfont.woff
-        ├── jquery
-        │   └── jquery.js
-        └── jquery-ui
-            ├── accordion.min.js
-            ├── autocomplete.min.js
-            └── button.min.js
-
-5 directories, 10 files
-*/})
+  expected_output: 'public/js,public/js/lib,public/js/lib/font-awesome,public/js/lib/font-awesome/FontAwesome.otf,public/js/lib/font-awesome/font-awesome.css,public/js/lib/font-awesome/fontawesome-webfont.eot,public/js/lib/font-awesome/fontawesome-webfont.svg,public/js/lib/font-awesome/fontawesome-webfont.ttf,public/js/lib/font-awesome/fontawesome-webfont.woff,public/js/lib/jquery,public/js/lib/jquery-ui,public/js/lib/jquery-ui/accordion.min.js,public/js/lib/jquery-ui/autocomplete.min.js,public/js/lib/jquery-ui/button.min.js,public/js/lib/jquery/jquery.js'
 }, {
   name: 'test4',
-  expected_output: ml(function() { /*
-public
-└── js
-    └── lib
-        ├── font-awesome
-        │   ├── FontAwesome.otf
-        │   ├── font-awesome.css
-        │   ├── fontawesome-webfont.eot
-        │   ├── fontawesome-webfont.svg
-        │   ├── fontawesome-webfont.ttf
-        │   └── fontawesome-webfont.woff
-        ├── jquery
-        │   └── jquery.js
-        └── jquery-ui
-            ├── accordion.min.js
-            ├── autocomplete.min.js
-            ├── button.min.js
-            └── i18n
-                ├── datepicker-af.min.js
-                ├── datepicker-ar-DZ.min.js
-                └── datepicker-ca.min.js
-
-6 directories, 13 files
-*/})
+  expected_output: 'public/js,public/js/lib,public/js/lib/font-awesome,public/js/lib/font-awesome/FontAwesome.otf,public/js/lib/font-awesome/font-awesome.css,public/js/lib/font-awesome/fontawesome-webfont.eot,public/js/lib/font-awesome/fontawesome-webfont.svg,public/js/lib/font-awesome/fontawesome-webfont.ttf,public/js/lib/font-awesome/fontawesome-webfont.woff,public/js/lib/jquery,public/js/lib/jquery-ui,public/js/lib/jquery-ui/accordion.min.js,public/js/lib/jquery-ui/autocomplete.min.js,public/js/lib/jquery-ui/button.min.js,public/js/lib/jquery-ui/i18n,public/js/lib/jquery-ui/i18n/datepicker-af.min.js,public/js/lib/jquery-ui/i18n/datepicker-ar-DZ.min.js,public/js/lib/jquery-ui/i18n/datepicker-ca.min.js,public/js/lib/jquery/jquery.js'
 }];
 
 tests.forEach(function(test) {
   test_it(test.name);
-  if(strip(o()) !== strip(test.expected_output)) {
+  if(o() !== test.expected_output) {
     console.error('Test ' + test.name + ' failed.');
   } else {
     console.log('Test ' + test.name + ' succeed.');
@@ -123,7 +34,7 @@ function test_it(test) {
 }
 
 function o() {
-  return sh.exec('tree public', {silent: true}).output;
+  return grunt.file.expand('public/**/*').sort().join();
 }
 
 function strip(s) {
