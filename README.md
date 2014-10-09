@@ -138,6 +138,7 @@ bower: {
     dest: 'public/',
     js_dest: 'public/js/'
     css_dest: 'public/css/',
+    fonts_dest: 'public/fonts/', //covers font types ['svg','eot', 'ttf', 'woff', 'otf']
     options: {
       expand: true
     }
@@ -178,10 +179,21 @@ bower: {
   }
 }
 ```
-`keepExpandedHierarchy` default to true, you have to explicitly set it to `false` if you want a flattened output structure.  
-Set `stripGlobBase` to true if you only want to keep the expanded part in the globbing pattern.
 
+keepExpandedHierarchy
+===
+This default to true (for all dependencies), you have to explicitly set it to `false` if you want a flattened output structure.  
+Set `stripGlobBase` to true if you only want to keep the expanded part in the globbing pattern. If you want flattening for all packages do:
 
+```javascript
+bower: {
+  dev: {
+    options: {
+      keepExpandedHierarchy: false
+    }
+  }
+}
+```
 
 ## Change Logs
 [Check here.](https://github.com/curist/grunt-bower/blob/master/CHANGELOG.md)
