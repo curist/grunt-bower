@@ -38,8 +38,8 @@ bower: {
 }
 ```
 
-**stripAffix** could cause name confliction, use with caution!
-If you were using `grunt-bower` prior to v0.9.0, **stripJsAffix** is now an alias to **stripAffix** option.
+`stripAffix` could cause name confliction, use with caution!
+If you were using `grunt-bower` prior to v0.9.0, `stripJsAffix` is now an alias to `stripAffix` option.
 
 If you want to assign different destination folder for other file types:
 
@@ -54,6 +54,8 @@ bower: {
 ```
 
 File types without a `[file_type]_dest` will go to `dest` folder.
+
+**Note**: `fonts_dest` is a special case, `svg`, `eot`, `ttf`, `woff`, `otf`, are all covered by `fonts_dest` for convenience.
 
 If you want to have more specific `dest` options for certain packages:
 
@@ -180,9 +182,7 @@ bower: {
 }
 ```
 
-### keepExpandedHierarchy
-
-This default to true (for all dependencies), you have to explicitly set it to `false` if you want a flattened output structure.  
+`keepExpandedHierarchy` default to true (for all dependencies), you have to explicitly set it to `false` if you want a flattened output structure.  
 Set `stripGlobBase` to true if you only want to keep the expanded part in the globbing pattern. If you want flattening for all packages do:
 
 ```javascript
