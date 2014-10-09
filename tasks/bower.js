@@ -23,43 +23,6 @@ module.exports = function(grunt) {
   var log = grunt.log.write;
   var helpers = require('./lib/helpers').init(grunt);
 
-  /*
-  Handle a a target and see if it has fonts_dest.
-  If it exists then redirect all font extensions
-  to fonts_dest's destination.
-  */
-  var getFontDests = function(target){
-    var font_dests = [];
-    var font_dest = _(target).chain().keys().filter(function(option) {
-      return option == 'fonts_dest';
-    }).first().value();
-
-    if(font_dest){
-      font_dests = ['svg','eot', 'ttf', 'woff', 'otf'].map(function(ext){
-        return [ext, target[font_dest]];
-      });
-    }
-    return font_dests;
-  };
-
-  /*
-  get destinations for extensions with checking for a fonts_dest as well
-  */
-  var getDests = function(target){
-    var ext_dests = _(target).chain().keys().filter(function(option) {
-      return _(option).endsWith('_dest') && option != 'fonts_dest';
-    });
-
-    var font_dests = getFontDests(target);
-
-    var normal_dests = ext_dests.map(function(dest_opt) {
-      var ext_name = dest_opt.replace(/_dest$/, '');
-      return [ext_name, target[dest_opt]];
-    }).value();
-
-    return _.object(normal_dests.concat(font_dests));
-  };
-
   grunt.registerMultiTask(task_name, task_desc, function() {
     var done = this.async();
     var targets = (this.file) ? [this.file] : this.files;
@@ -94,7 +57,7 @@ module.exports = function(grunt) {
               var dest = target.dest || path.join('public', 'scripts' ,'vendor');
               var dest_file_name;
 
-              var dests = getDests(target);
+              var dests = helpers.getDests(target);
 
               var package_dest = '';
               var package_dests = {};
@@ -107,7 +70,7 @@ module.exports = function(grunt) {
                 strip_glob_base = typeof package_opt.stripGlobBase !== 'undefined'
                     ? package_opt.stripGlobBase : options.stripGlobBase;
                 package_dest = package_opt.dest;
-                package_dests = getDests(package_opt);
+                package_dests = helpers.getDests(package_opt);
 
                 if(_(package_opt.files).isArray()) {
                   // FIXME src_paths should be concat with the original src_paths

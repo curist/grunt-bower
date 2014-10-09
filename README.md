@@ -180,8 +180,8 @@ bower: {
 }
 ```
 
-keepExpandedHierarchy
-===
+### keepExpandedHierarchy
+
 This default to true (for all dependencies), you have to explicitly set it to `false` if you want a flattened output structure.  
 Set `stripGlobBase` to true if you only want to keep the expanded part in the globbing pattern. If you want flattening for all packages do:
 

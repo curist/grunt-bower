@@ -111,6 +111,46 @@ exports.init = function(grunt) {
     return [all_js_files[min_dist_index]];
   };
 
+  /*
+     Handle a a target and see if it has fonts_dest.
+     If it exists then redirect all font extensions
+     to fonts_dest's destination.
+     */
+  function getFontDests(target){
+    var font_dests = [];
+    var font_dest = !!_(Object.keys(target)).find(function(option) {
+      return option == 'fonts_dest';
+    });
+
+    if(font_dest){
+      font_dests = ['svg','eot', 'ttf', 'woff', 'otf'].map(function(ext){
+        return [ext, target['fonts_dest']];
+      });
+    }
+    return font_dests;
+  };
+
+  /*
+     get destinations for extensions with checking for a fonts_dest as well
+     */
+  exports.getDests = function(target){
+    var ext_dests = _(target).chain().keys().filter(function(option) {
+      return _(option).endsWith('_dest') && option != 'fonts_dest';
+    });
+
+    var font_dests = getFontDests(target);
+
+    var normal_dests = ext_dests.map(function(dest_opt) {
+      var ext_name = dest_opt.replace(/_dest$/, '');
+      return [ext_name, target[dest_opt]];
+    }).value();
+
+    return _.object(normal_dests.concat(font_dests));
+  };
+
   return exports;
 };
+
+
+
 

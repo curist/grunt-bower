@@ -69,6 +69,14 @@ module.exports = function (grunt) {
             }
           }
         }
+      },
+      test5: {
+        dest: 'public/',
+        test_dest: 'foo',
+        fonts_dest: 'public/fonts',
+        options: {
+          keepExpandedHierarchy: false,
+        }
       }
     },
     clean: {
