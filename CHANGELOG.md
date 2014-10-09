@@ -1,3 +1,7 @@
+- Oct 10, 2014 v0.16.0
+
+  Treat `fonts_dest` as a special case. ([nmccready](https://github.com/nmccready))
+
 - Oct 06, 2014 v0.15.1
 
   Stop treating 1 source file as special cases.
