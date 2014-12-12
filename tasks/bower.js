@@ -120,7 +120,7 @@ module.exports = function(grunt) {
               _(src_paths).chain().map(function(src_path) {
                 return grunt.file.expand(src_path);
               }).flatten().map(function(src_path) {
-                var baseDirRegex = new RegExp(bower.config.cwd + '/?');
+                var baseDirRegex = new RegExp(bower.config.cwd.replace(/\\/g,'[\\\/]') + '/?');
                 return src_path.replace(baseDirRegex, '');
               }).each(function(src_path) {
 
