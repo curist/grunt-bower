@@ -1,3 +1,7 @@
+- Dec 12, 2014 v0.16.1
+
+  Fix regexp for windows. ([artch](https://github.com/artch))
+
 - Oct 10, 2014 v0.16.0
 
   Treat `fonts_dest` as a special case. ([nmccready](https://github.com/nmccready))
