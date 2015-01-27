@@ -55,7 +55,7 @@ bower: {
 
 File types without a `[file_type]_dest` will go to `dest` folder.
 
-**Note**: `fonts_dest` is a special case, `svg`, `eot`, `ttf`, `woff`, `otf`, are all covered by `fonts_dest` for convenience.
+**Note**: `fonts_dest` is a special case, `svg`, `eot`, `ttf`, `woff`, `woff2`, `otf`, are all covered by `fonts_dest` for convenience.
 
 If you want to have more specific `dest` options for certain packages:
 
@@ -140,7 +140,7 @@ bower: {
     dest: 'public/',
     js_dest: 'public/js/'
     css_dest: 'public/css/',
-    fonts_dest: 'public/fonts/', //covers font types ['svg','eot', 'ttf', 'woff', 'otf']
+    fonts_dest: 'public/fonts/', //covers font types ['svg','eot', 'ttf', 'woff', 'woff2', 'otf']
     options: {
       expand: true
     }

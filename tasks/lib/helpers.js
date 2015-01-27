@@ -123,7 +123,7 @@ exports.init = function(grunt) {
     });
 
     if(font_dest){
-      font_dests = ['svg','eot', 'ttf', 'woff', 'otf'].map(function(ext){
+      font_dests = ['svg','eot', 'ttf', 'woff', 'woff2', 'otf'].map(function(ext){
         return [ext, target['fonts_dest']];
       });
     }
