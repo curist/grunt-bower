@@ -28,7 +28,10 @@ module.exports = function(grunt) {
     var targets = (this.file) ? [this.file] : this.files;
     var options = this.data.options || {};
     var stripAffix = options.stripJsAffix || options.stripAffix;
-
+    var copyOptions = {
+        process: options.process || null
+    };
+      
     bower.commands.list({paths: true, relative: false})
       .on('end',  function (data) {
         _(data).each(function(lib_path, lib_name) {
@@ -147,7 +150,7 @@ module.exports = function(grunt) {
                       expanded_dir = '';
                     }
                   } else if (file_name) {
-                    grunt.file.copy(src_path, dest_file_path);
+                    grunt.file.copy(src_path, dest_file_path, copyOptions);
                     log(dest_file_path.cyan + ' copied.\n');
                   }
                 } catch(e) {
