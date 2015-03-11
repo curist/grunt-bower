@@ -195,6 +195,24 @@ bower: {
 }
 ```
 
+#### process option
+Type: `Function(content, srcpath)`
+
+This option is passed to `grunt.file.copy` as an advanced way to control the file contents that are copied.
+
+
+```javascript
+bower: {
+  dev: {
+    options: {
+      process: function (content, srcpath) {
+        return content.replace(/[sad ]/g,"_");
+      },
+    },
+  },
+},
+```
+
 ## Change Logs
 [Check here.](https://github.com/curist/grunt-bower/blob/master/CHANGELOG.md)
 
