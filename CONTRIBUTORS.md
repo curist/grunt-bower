@@ -10,3 +10,4 @@ Contributors
 * [nmccready](https://github.com/nmccready)
 * [artch](https://github.com/artch)
 * [LukaszKrawczyk](https://github.com/LukaszKrawczyk)
+* [Bronisław Białek](https://github.com/bronek89)

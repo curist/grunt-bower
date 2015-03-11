@@ -1,3 +1,11 @@
+- Mar 11, 2015 v0.18.0
+
+  Add option `process` to pass option to grunt.file.copy ([bronek89](https://github.com/bronek89))
+
+- Jan 27, 2015 v0.17.0
+
+  Support WOFFv.2 format ([LukaszKrawczyk](https://github.com/LukaszKrawczyk))
+
 - Dec 12, 2014 v0.16.1
 
   Fix regexp for windows. ([artch](https://github.com/artch))
