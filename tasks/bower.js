@@ -62,6 +62,8 @@ module.exports = function(grunt) {
 
               var dests = helpers.getDests(target);
 
+              var skipPatterns = target.skipPatterns || [];
+
               var package_dest = '';
               var package_dests = {};
               var package_opt = options.packageSpecific &&
@@ -150,8 +152,19 @@ module.exports = function(grunt) {
                       expanded_dir = '';
                     }
                   } else if (file_name) {
-                    grunt.file.copy(src_path, dest_file_path, copyOptions);
-                    log(dest_file_path.cyan + ' copied.\n');
+                    var should_copy = true;
+                    for (var ll = 0; ll < skipPatterns.length; ll++) {
+                      var matches = file_name.match(skipPatterns[ll]);
+                      if (matches === null || matches.length === 0) {
+                        should_copy = false;
+                        break;
+                      }
+                    }
+
+                    if (should_copy) {
+                      grunt.file.copy(src_path, dest_file_path, copyOptions);
+                      log(dest_file_path.cyan + ' copied.\n');
+                    }
                   }
                 } catch(e) {
                   log(('Fail to copy ').red +
