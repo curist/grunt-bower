@@ -155,7 +155,7 @@ module.exports = function(grunt) {
                     var should_copy = true;
                     for (var ll = 0; ll < skipPatterns.length; ll++) {
                       var matches = file_name.match(skipPatterns[ll]);
-                      if (matches === null || matches.length === 0) {
+                      if (matches !== null && matches.length > 0) {
                         should_copy = false;
                         break;
                       }
