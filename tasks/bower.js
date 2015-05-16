@@ -136,9 +136,14 @@ module.exports = function(grunt) {
                 dest_dir = package_dests[ext_name] ||
                   dests[ext_name] || package_dest || dest;
 
+                var expand_option =
+                  (package_opt && typeof package_opt.expand != 'undefined')
+                    ? package_opt.expand
+                    : options.expand;
+
                 dest_file_path = path.join(
                   dest_dir,
-                  options.expand ? lib_name : '',
+                  expand_option ? lib_name : '',
                   (!flatten && strip_glob_base) ? relative_glob_expanded_path[src_path] : file_name
                 );
 
