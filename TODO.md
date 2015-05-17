@@ -1,1 +1,1 @@
-* handle other file extensions
+* allow all possible options to be overrided for each packages

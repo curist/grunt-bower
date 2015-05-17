@@ -1,3 +1,7 @@
+- May 17, 2015 v0.19.0
+
+  Add package specific `expand` option ([beeyayjay](https://github.com/beeyayjay))
+
 - Mar 11, 2015 v0.18.0
 
   Add option `process` to pass option to grunt.file.copy ([bronek89](https://github.com/bronek89))
