@@ -21,6 +21,12 @@ var tests = [{
 }, {
   name: 'test5',
   expected_output: 'public/font-awesome.css,public/fonts,public/fonts/FontAwesome.otf,public/fonts/fontawesome-webfont.eot,public/fonts/fontawesome-webfont.svg,public/fonts/fontawesome-webfont.ttf,public/fonts/fontawesome-webfont.woff,public/jquery-ui.js,public/jquery.js'
+}, {
+  name: 'testPackageSpecificExpand1',
+  expected_output: 'public/font-awesome,public/font-awesome/css,public/font-awesome/css/font-awesome.css,public/font-awesome/fonts,public/font-awesome/fonts/FontAwesome.otf,public/font-awesome/fonts/fontawesome-webfont.eot,public/font-awesome/fonts/fontawesome-webfont.svg,public/font-awesome/fonts/fontawesome-webfont.ttf,public/font-awesome/fonts/fontawesome-webfont.woff,public/jquery-ui,public/jquery-ui/jquery-ui.js,public/jquery.js'
+}, {
+  name: 'testPackageSpecificExpand2',
+  expected_output: 'public/dist,public/dist/jquery.js,public/font-awesome,public/font-awesome/css,public/font-awesome/css/font-awesome.css,public/font-awesome/fonts,public/font-awesome/fonts/FontAwesome.otf,public/font-awesome/fonts/fontawesome-webfont.eot,public/font-awesome/fonts/fontawesome-webfont.svg,public/font-awesome/fonts/fontawesome-webfont.ttf,public/font-awesome/fonts/fontawesome-webfont.woff,public/jquery-ui,public/jquery-ui/jquery-ui.js'
 }];
 
 tests.forEach(function(test) {

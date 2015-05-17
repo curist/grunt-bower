@@ -77,6 +77,32 @@ module.exports = function (grunt) {
         options: {
           keepExpandedHierarchy: false,
         }
+      },
+      testPackageSpecificExpand1: {
+        dest: 'public/',
+        options: {
+          expand: true,
+          stripJsAffix: true,
+          packageSpecific: {
+            'jquery': {
+              expand: false,
+              keepExpandedHierarchy: false
+            }
+          }
+        }
+      },
+      testPackageSpecificExpand2: {
+        dest: 'public/',
+        options: {
+          expand: true,
+          stripJsAffix: true,
+          packageSpecific: {
+            'jquery': {
+              expand: false,
+              keepExpandedHierarchy: true
+            }
+          }
+        }
       }
     },
     clean: {
