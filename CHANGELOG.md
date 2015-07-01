@@ -1,3 +1,7 @@
+- Jul 01, 2015
+
+  Treat `images_dest` as a special case. ([colepanike](https://github.com/colepanike))
+
 - May 17, 2015 v0.19.0
 
   Add package specific `expand` option ([beeyayjay](https://github.com/beeyayjay))
