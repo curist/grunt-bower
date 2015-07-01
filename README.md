@@ -56,6 +56,7 @@ bower: {
 File types without a `[file_type]_dest` will go to `dest` folder.
 
 **Note**: `fonts_dest` is a special case, `svg`, `eot`, `ttf`, `woff`, `woff2`, `otf`, are all covered by `fonts_dest` for convenience.
+
 **Note**: `images_dest` is another special case, 'jpeg', 'jpg', 'gif', 'png', are all covered by `images_dest` for convenience.
 
 If you want to have more specific `dest` options for certain packages:
