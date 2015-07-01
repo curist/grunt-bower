@@ -111,46 +111,63 @@ exports.init = function(grunt) {
     return [all_js_files[min_dist_index]];
   };
 
-  /*
-     Handle a a target and see if it has fonts_dest.
-     If it exists then redirect all font extensions
-     to fonts_dest's destination.
-     */
-  function getFontDests(target){
-    var font_dests = [];
-    var font_dest = !!_(Object.keys(target)).find(function(option) {
-      return option == 'fonts_dest';
-    });
-
-    if(font_dest){
-      font_dests = ['svg','eot', 'ttf', 'woff', 'woff2', 'otf'].map(function(ext){
-        return [ext, target['fonts_dest']];
-      });
-    }
-    return font_dests;
-  };
 
   /*
      get destinations for extensions with checking for a fonts_dest as well
      */
   exports.getDests = function(target){
     var ext_dests = _(target).chain().keys().filter(function(option) {
-      return _(option).endsWith('_dest') && option != 'fonts_dest';
+      return _(option).endsWith('_dest') && option != 'fonts_dest' && option != 'images_dest';
     });
 
-    var font_dests = getFontDests(target);
+    var font_dests = getFontDests(_, target);
+    var image_dests = getImageDests(_, target);
 
     var normal_dests = ext_dests.map(function(dest_opt) {
       var ext_name = dest_opt.replace(/_dest$/, '');
       return [ext_name, target[dest_opt]];
     }).value();
 
-    return _.object(normal_dests.concat(font_dests));
+    return _.object(normal_dests.concat(font_dests).concat(image_dests));
   };
 
   return exports;
 };
 
+/*
+   Handle a target and see if it has fonts_dest.
+   If it exists then redirect all font extensions
+   to fonts_dest's destination.
+   */
+function getFontDests(_, target){
+  var font_dests = [];
+  var font_dest = !!_(Object.keys(target)).find(function(option) {
+    return option == 'fonts_dest';
+  });
 
+  if(font_dest){
+    font_dests = ['svg','eot', 'ttf', 'woff', 'woff2', 'otf'].map(function(ext){
+      return [ext, target['fonts_dest']];
+    });
+  }
+  return font_dests;
+};
 
+/*
+   Handle a target and see if it has images_dest.
+   If it exists then redirect all font extensions
+   to images_dest's destination.
+   */
+function getImageDests(_, target){
+  var image_dests = [];
+  var image_dest = !!_(Object.keys(target)).find(function(option) {
+    return option == 'images_dest';
+  });
 
+  if(image_dest){
+    image_dests = ['jpeg', 'jpg', 'gif', 'png'].map(function(ext){
+      return [ext, target['images_dest']];
+    });
+  }
+  return image_dests;
+};
