@@ -128,7 +128,7 @@ module.exports = function(grunt) {
               }).each(function(src_path) {
 
                 if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1) {
-                  file_name = src_path.replace(expanded_dir, '');
+                  file_name = src_path.replace(new RegExp(".*" + expanded_dir), '');
                 } else {
                   file_name = src_path.split(/[\\\/]/).pop();
                 }
