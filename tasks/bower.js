@@ -141,10 +141,18 @@ module.exports = function(grunt) {
                     ? package_opt.expand
                     : options.expand;
 
+                var real_file_name = file_name;
+
+                if (!flatten && strip_glob_base) {
+                  if (relative_glob_expanded_path[src_path]) {
+                    real_file_name = relative_glob_expanded_path[src_path]
+                  }
+                }
+
                 dest_file_path = path.join(
                   dest_dir,
                   expand_option ? lib_name : '',
-                  (!flatten && strip_glob_base) ? relative_glob_expanded_path[src_path] : file_name
+                  real_file_name
                 );
 
                 try{
@@ -166,6 +174,7 @@ module.exports = function(grunt) {
               });
             });
           } catch (err) {
+            log(err.stack);
             log(('Fail to copy lib file for ' + lib_name + '!\n').red);
           }
         });
