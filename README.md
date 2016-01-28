@@ -1,6 +1,4 @@
-# grunt-bower
-
-[![Circle CI](https://circleci.com/gh/curist/grunt-bower.svg?style=svg)](https://circleci.com/gh/curist/grunt-bower)
+# grunt-bower ![Circle CI][circleci_badge] ![NPM DLs][npm_dl_badge] ![NPM D/M][npm_dm_badge]
 
 Copy bower installed components to dist folder.
 
@@ -15,6 +13,9 @@ grunt.loadNpmTasks('grunt-bower');
 
 [grunt]: http://gruntjs.com/
 [getting_started]: http://gruntjs.com/getting-started
+[circleci_badge]: https://circleci.com/gh/curist/grunt-bower.svg?style=svg
+[npm_dl_badge]: https://img.shields.io/npm/dt/grunt-bower.svg
+[npm_dm_badge]: https://img.shields.io/npm/dm/grunt-bower.svg
 
 ## Documentation
 To your [Gruntfile.js][getting_started], add:
