@@ -1,5 +1,7 @@
 # grunt-bower
 
+[![Circle CI](https://circleci.com/gh/curist/grunt-bower.svg?style=svg)](https://circleci.com/gh/curist/grunt-bower)
+
 Copy bower installed components to dist folder.
 
 ## Getting Started
