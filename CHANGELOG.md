@@ -1,3 +1,7 @@
+- Jan 28, 2015
+
+  Don't fail if stripGlobBase is true and file is absolute. ([idmontie](https://github.com/idmontie))
+
 - Jul 01, 2015
 
   Treat `images_dest` as a special case. ([colepanike](https://github.com/colepanike))

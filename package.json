@@ -1,7 +1,7 @@
 {
   "name": "grunt-bower",
   "description": "Copy bower installed components to dist folder.",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "homepage": "https://github.com/curist/grunt-bower",
   "author": {
     "name": "curist",
