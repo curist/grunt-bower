@@ -8,5 +8,8 @@
     "time-grunt": "~0.2.9",
     "jit-grunt": "~0.2.1",
     "shelljs": "^0.3.0"
+  },
+  "dependencies": {
+    "grunt-cli": "^0.1.13"
   }
 }

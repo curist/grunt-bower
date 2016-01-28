@@ -39,7 +39,8 @@ tests.forEach(function(test) {
 });
 
 function test_it(test) {
-  sh.exec('grunt clean bower:' + test, {silent: true});
+  var grunt_bin = './node_modules/grunt-cli/bin/grunt';
+  sh.exec(grunt_bin + ' clean bower:' + test, {silent: true});
 }
 
 function o() {
