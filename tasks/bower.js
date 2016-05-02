@@ -119,14 +119,12 @@ module.exports = function(grunt) {
               if(!flatten) {
                 expanded_dir = grunt.file.expand(path.join(bower.config.directory, lib_name)).shift();
               }
-
-              _(src_paths).chain().map(function(src_path) {
+              _.chain(src_paths).map(function(src_path) {
                 return grunt.file.expand(src_path);
               }).flatten().map(function(src_path) {
                 var baseDirRegex = new RegExp(bower.config.cwd.replace(/\\/g,'[\\\/]') + '/?');
                 return src_path.replace(baseDirRegex, '');
               }).each(function(src_path) {
-
                 if (!flatten && expanded_dir && src_path.indexOf(expanded_dir) > -1) {
                   file_name = src_path.replace(expanded_dir, '');
                 } else {
@@ -171,7 +169,7 @@ module.exports = function(grunt) {
                       src_path.yellow + (' for ').red +
                       lib_name.yellow + ('!\n').red);
                 }
-              });
+              }).value();
             });
           } catch (err) {
             log(err.stack);
