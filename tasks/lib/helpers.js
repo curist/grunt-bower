@@ -37,6 +37,11 @@ exports.init = function(grunt) {
   var path = require('path');
   var _ = grunt.utils ? grunt.utils._ : grunt.util._;
 
+  // Hacky fix for lodash v3/v4 API change, see https://github.com/angular-ui/angular-google-maps/issues/1682
+  if( typeof _.object === 'undefined' ) {
+    _.object = _.zipObject;
+  }
+  
   exports.getLibFilenames = function(main_path, components_path, lib_name) {
     // In Nodejs 0.8.0, existsSync moved from path -> fs.
     var existsSync = fs.existsSync || path.existsSync;
