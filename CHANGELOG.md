@@ -1,3 +1,7 @@
+- May 04, 2016
+
+  Deal with `lodash` compatibility. ([DaGaMs](https://github.com/DaGaMs))
+
 - Jan 28, 2015
 
   Don't fail if stripGlobBase is true and file is absolute. ([idmontie](https://github.com/idmontie))
