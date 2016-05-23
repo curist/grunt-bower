@@ -116,9 +116,9 @@ exports.init = function(grunt) {
      get destinations for extensions with checking for a fonts_dest as well
      */
   exports.getDests = function(target){
-    var ext_dests = _(target).chain().keys().filter(function(option) {
+    var ext_dests = Object.keys(target).filter(function(option) {
       return _(option).endsWith('_dest') && option != 'fonts_dest' && option != 'images_dest';
-    }).value();
+    });
 
     var font_dests = getFontDests(_, target);
     var image_dests = getImageDests(_, target);
@@ -126,7 +126,7 @@ exports.init = function(grunt) {
     var normal_dests = ext_dests.map(function(dest_opt) {
       var ext_name = dest_opt.replace(/_dest$/, '');
       return [ext_name, target[dest_opt]];
-    }).value();
+    });
 
     return _.fromPairs(normal_dests.concat(font_dests).concat(image_dests));
   };

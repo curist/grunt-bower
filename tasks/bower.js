@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
   var task_name = 'bower';
   var task_desc = 'Copy bower installed components to dist folder.';
-  var _ = grunt.utils ? grunt.utils._ : grunt.util._;
+  var _ = require('lodash');
   var path = require('path');
   var bower = require('bower');
   var log = grunt.log.write;
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
     var copyOptions = {
         process: options.process || null
     };
-      
+
     bower.commands.list({paths: true, relative: false})
       .on('end',  function (data) {
         _(data).each(function(lib_path, lib_name) {
