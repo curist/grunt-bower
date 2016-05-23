@@ -33,6 +33,7 @@ tests.forEach(function(test) {
   test_it(test.name);
   if(o() !== test.expected_output) {
     console.error('Test ' + test.name + ' failed.');
+    process.exit(1);
   } else {
     console.log('Test ' + test.name + ' succeed.');
   }

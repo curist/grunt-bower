@@ -1,4 +1,5 @@
 // http://en.wikipedia.org/wiki/Levenshtein_distance#Computing_Levenshtein_distance
+var _ = require('lodash');
 function levenshteinDistanceAux(str1, str2) {
   var memo = {};
 
@@ -35,13 +36,7 @@ exports.init = function(grunt) {
   var exports = {};
   var fs = require('fs');
   var path = require('path');
-  var _ = grunt.utils ? grunt.utils._ : grunt.util._;
 
-  // Hacky fix for lodash v3/v4 API change, see https://github.com/angular-ui/angular-google-maps/issues/1682
-  if( typeof _.object === 'undefined' ) {
-    _.object = _.zipObject;
-  }
-  
   exports.getLibFilenames = function(main_path, components_path, lib_name) {
     // In Nodejs 0.8.0, existsSync moved from path -> fs.
     var existsSync = fs.existsSync || path.existsSync;
@@ -123,7 +118,7 @@ exports.init = function(grunt) {
   exports.getDests = function(target){
     var ext_dests = _(target).chain().keys().filter(function(option) {
       return _(option).endsWith('_dest') && option != 'fonts_dest' && option != 'images_dest';
-    });
+    }).value();
 
     var font_dests = getFontDests(_, target);
     var image_dests = getImageDests(_, target);
