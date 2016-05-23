@@ -133,7 +133,7 @@ exports.init = function(grunt) {
       return [ext_name, target[dest_opt]];
     }).value();
 
-    return _.object(normal_dests.concat(font_dests).concat(image_dests));
+    return _.fromPairs(normal_dests.concat(font_dests).concat(image_dests));
   };
 
   return exports;
