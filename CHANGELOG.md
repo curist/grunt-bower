@@ -1,3 +1,7 @@
+- May 23, 2016 v0.21.2
+
+  Explicitly using lodash. ([shvelo](https://github.com/shvelo))
+
 - May 04, 2016
 
   Deal with `lodash` compatibility. ([DaGaMs](https://github.com/DaGaMs))

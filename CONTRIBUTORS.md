@@ -13,3 +13,4 @@ Contributors
 * [Bronisław Białek](https://github.com/bronek89)
 * [idmontie](https://github.com/idmontie)
 * [DaGaMs](https://github.com/DaGaMs)
+* [Nick Shvelidze](https://github.com/shvelo)
