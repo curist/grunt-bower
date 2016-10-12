@@ -28,7 +28,7 @@
     "test": "cd ./test/boilerplate && npm install && rm -rf node_modules/grunt-bower && ln -nfs ../../.. node_modules/grunt-bower && node run_test.js"
   },
   "dependencies": {
-    "bower": "~1.2.8",
+    "bower": "~1.7.9",
     "lodash": "^4.13.0"
   },
   "devDependencies": {
