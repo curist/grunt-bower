@@ -1,3 +1,7 @@
+- Oct 13, 2016 v0.21.3
+
+  Update bower dependency. ([shvelo](https://github.com/shvelo))
+
 - May 23, 2016 v0.21.2
 
   Explicitly using lodash. ([shvelo](https://github.com/shvelo))
