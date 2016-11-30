@@ -86,7 +86,7 @@ module.exports = function(grunt) {
 
                       if(strip_glob_base) {
                         var glob_base = path.join(bower.config.directory, lib_name, file.replace(/\*.*$/, ''));
-                        var glob_base_re = new RegExp('^' + glob_base);
+                        var glob_base_re = new RegExp('^' + glob_base.replace(/\\/g,'[\\\/]'));
                         expanded_paths.forEach(function(expanded_path) {
                           var relatie_path = expanded_path.replace(glob_base_re, '');
                           relative_glob_expanded_path[expanded_path] = relatie_path;
