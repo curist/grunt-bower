@@ -14,3 +14,4 @@ Contributors
 * [idmontie](https://github.com/idmontie)
 * [DaGaMs](https://github.com/DaGaMs)
 * [Nick Shvelidze](https://github.com/shvelo)
+* [trs79](https://github.com/trs79)
